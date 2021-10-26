@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "pframe-react-web",
+    "dev": "pframe-react-web",
+    "prod": "pframe-react-web"
+  }
+}

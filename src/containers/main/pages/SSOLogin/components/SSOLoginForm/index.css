@@ -1,0 +1,254 @@
+@import "~antd/dist/antd.css";
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* .ant-row {
+  height: 40px;
+} */
+
+/* .ant-row.ant-form-item {
+    margin-bottom: 0;
+} */
+
+.ant-card-body {
+  margin: 0;
+  padding: 5px 5px 5px 18px;
+  line-height: 1.2;
+}
+
+.ant-tabs-content {
+  overflow-y: auto;
+}
+
+.ant-tabs-content-no-animation {
+  overflow-y: auto;
+}
+
+.ant-list-item {
+  padding: 10px;
+}
+
+.ant-collapse-content .ant-collapse-content-box {
+  padding: 00px;
+}
+
+body {
+  background: #fff;
+}
+
+/* .left-panel {
+	width: 40%;
+	height: 100vh;
+	border: "10px solid #c3c3c3";
+	z-index: 1;
+} */
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  background-color: #fff;
+  position: relative !important;
+  display: flex;
+  z-index: 10;
+}
+
+.card {
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.3), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.animate-left {
+  position: relative;
+  animation: animateleft 0.4s;
+}
+@keyframes animateleft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.sidebar-content-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: inherit;
+}
+
+.sidebar-header {
+  height: 35px;
+}
+
+.sidebar-header img {
+  height: 30px;
+  padding-right: 5px;
+}
+
+.sidebar-header button {
+  border: none;
+  display: inline-block;
+  padding: 5px;
+  vertical-align: middle;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.map-container {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 5px;
+  margin-bottom: 10px;
+}
+
+.table-row button {
+  border: none;
+  display: inline-block;
+  padding: 5px;
+  vertical-align: middle;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.table-row img {
+  height: 20px;
+}
+
+.table-row div {
+  word-wrap: break-word;
+}
+
+.page-header {
+  display: block;
+  height: 32px;
+}
+
+.page-header-contents {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.transparent-button {
+  border: none;
+  vertical-align: middle;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.map-drawer-button {
+  display: none;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  border-radius: 45px;
+  padding: 8px 10px;
+  vertical-align: middle;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.map-drawer-button img {
+  width: 15px;
+}
+
+.scroll-div {
+  overflow-y: auto;
+}
+
+.table-header {
+  background-color: #e5e3de;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 5px 5px;
+}
+
+.add-new-bar {
+  background-color: #efeeea;
+  flex-direction: row;
+  display: flex;
+  height: 32px;
+  padding: 5px;
+}
+
+.common-header {
+  background-color: #f4e842;
+  padding: 5px 0px 5px 20px;
+}
+
+.graph-line {
+  stroke: green;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.dot {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ant-timeline-item-head-custom {
+  padding : 0px;
+  line-height: 0;
+}
+
+.app-frame {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+}

@@ -1,0 +1,76 @@
+{
+  "name": "pframe-web-react",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "start:dev": "env-cmd -e development react-scripts start",
+    "start:prod": "env-cmd -e production react-scripts start",
+    "start:prod:dev": "env-cmd -e production_dev react-scripts start",
+    "build": "react-scripts build",
+    "build:dev": "env-cmd -e development react-scripts build",
+    "build:prod": "env-cmd -e production react-scripts build",
+    "deploy:firebase": "yarn build && firebase deploy",
+    "deploy:firebase:dev": "yarn build:dev && firebase deploy -P dev",
+    "deploy:firebase:dev:prod": "yarn build:dev && firebase deploy -P prod",
+    "deploy:firebase:prod": "yarn build:prod && firebase deploy -P prod",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "clear:yarn:cache": "rm -rf node_modules/ yarn.lock && yarn cache clean --all",
+    "clear:all": "yarn clear:yarn:cache; yarn install; yarn start --reset-cache",
+    "enable:modern": "yarn set version berry",
+    "enable:nm": "grep -qxF 'nodeLinker: node-modules' .yarnrc.yml || echo 'nodeLinker: node-modules' >> .yarnrc.yml",
+    "enable:upgrade": "yarn plugin import interactive-tools",
+    "up:yarn:latest": "yarn set version latest",
+    "up:nm:latest": "yarn upgrade-interactive"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "@testing-library/user-event": "13.2.1",
+    "antd": "4.16.13",
+    "connected-react-router": "6.9.1",
+    "env-cmd": "^10.1.0",
+    "firebase": "9.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "7.2.4",
+    "react-router": "5.2.1",
+    "react-scripts": "4.0.3",
+    "redux": "4.1.1",
+    "redux-devtools-extension": "2.13.9",
+    "redux-thunk": "2.3.0",
+    "web-vitals": "2.1.0",
+    "workbox-background-sync": "6.2.4",
+    "workbox-broadcast-update": "6.2.4",
+    "workbox-cacheable-response": "6.2.4",
+    "workbox-core": "6.2.4",
+    "workbox-expiration": "6.2.4",
+    "workbox-google-analytics": "6.2.4",
+    "workbox-navigation-preload": "6.2.4",
+    "workbox-precaching": "6.2.4",
+    "workbox-range-requests": "6.2.4",
+    "workbox-routing": "6.2.4",
+    "workbox-strategies": "6.2.4",
+    "workbox-streams": "6.2.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "yarn@3.0.1"
+}
