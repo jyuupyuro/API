@@ -1,10 +1,7 @@
 import React from 'react'
+import Route1 from './service/navigation/route';
 
 const App = props => {
-  return (
-    <div>
-      <p>Hello from v1</p>
-    </div>
-  )
+  return <Route1/>
 } 
 export default App

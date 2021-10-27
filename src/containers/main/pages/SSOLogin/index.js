@@ -66,12 +66,17 @@ const SSOLogin= (props) => {
         // }
     };
 
-    const loginPressed = (email, password) => {
+    const loginPressed = (account, setAPI, setBill) => {
         loginPerformed({type : "success"})
         // signInAccount(email, password, loginResult =>
         //     loginPerformed(loginResult)
         // );
     };
+
+    const CancelPressed = () => {
+
+    };
+
 
     return (
         <div
@@ -123,11 +128,7 @@ const SSOLogin= (props) => {
                                 justifyContent: "center"
                             }}
                         >
-                            <img
-                                src={CONSTANT.THEME.LOGO}
-                                alt={CONSTANT.THEME.COMPANY.NAME}
-                                style={CONSTANT.THEME.STYLE.LOGO}
-                            />
+
                         </div>
 
                         <div
@@ -145,8 +146,8 @@ const SSOLogin= (props) => {
                             >
                                 <SSOLoginForm
                                     {...props}
-                                    onLoginPress={(email, password) =>
-                                        loginPressed(email, password)
+                                    onLoginPress={(account, setAPI, setBill) =>
+                                        loginPressed(account, setAPI, setBill)
                                     }
                                 />
                             </div>
