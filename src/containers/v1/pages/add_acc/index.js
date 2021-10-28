@@ -1,37 +1,56 @@
-import React, { Component } from 'react'
+import React, { Component,useState } from 'react'
 import { connect } from 'react-redux'
+import { Modal, Button } from 'antd'
+
 
 import { useDispatch } from 'react-redux'
-
-import {
-    Button
-} from 'antd'
 
 import {moveToPage,goBackToPrev,} from '../../service/navigation/services'
 
 const Test = props => {
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+      setIsModalVisible(true);
+    };
+  
+    const handleOk = () => {
+      setIsModalVisible(false);
+    };
+  
+    const handleCancel = () => {
+      setIsModalVisible(false);
+    };
     const dispatch = useDispatch()
 
     return (
         <div>
             <h1>Hello</h1>
+
+            
+            
+            <Button type="primary" onClick={showModal}>
+                    Open Modal
+                </Button>
+                <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
+
             <Button 
                 style={{width:200}}
                 onClick = {() => {
-                    dispatch(moveToPage("/Add"))
-                }}
-            >Test</Button>
-            <Button 
-                style={{width:200}}
-                onClick = {() => {
-                    dispatch(goBackToPrev())
+                    dispatch(goBackToPrev("/Add"))
                 }}
             >Go back</Button>
+
+
+
         </div>
     )
     
 }
 
-
-export default Test
+export default Test;

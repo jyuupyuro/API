@@ -14,43 +14,34 @@ import CONSTANT from "../../../../constants";
 import "./index.css";
 
 const SSOLoginForm = (props) => {
-  const [account, setAccount] = useState("");
-  const [api, setAPI] = useState("");
-  const [bill, setBill] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
 
   return (
     <Form className="login-form">
-        <label>Add New Account</label>
+        <strong>Please LOG IN</strong>
       <Form.Item style={{ marginBottom: "15px" }}>
-        <label> Account</label>
+        <label> Email</label>
         <Input
           prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          placeholder="Account"
-          value={account}
-          onChange={(e) => setAccount(e.target.value)}
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </Form.Item>
       <Form.Item style={{ marginBottom: "15px" }}>
-        <label> API Key</label>
+        <label> password</label>
         <Input
           prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           
-          placeholder="API Key"
-          value={api}
-          onChange={(e) => setAPI(e.target.value)}
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Item>
 
-      <Form.Item style={{ marginBottom: "15px" }}>
-        <label> Next Month Bill Date</label>
-        <Input
-          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          
-          placeholder="Next Month Bill Date"
-          value={bill}
-          onChange={(e) => setBill(e.target.value)}
-        />
-      </Form.Item>
+      
 
       <Form.Item>
         <Button
@@ -62,27 +53,14 @@ const SSOLoginForm = (props) => {
           }}
           type="primary"
           className="login-form-button"
-          onClick={() => props.onLoginPress(account, setAPI)}
+          onClick={() => props.onLoginPress(email, password)}
           loading={props.isLoginLoading}
         >
-          Save
+          LOG IN
         </Button>
       </Form.Item>
       <Form.Item>
-        <Button
-          style={{
-            width: "100%",
-            backgroundColor: CONSTANT.THEME.THEME_COLOR,
-            border: "none",
-            boxShadow: "2px 2px 5px #696969",
-          }}
-          type="primary"
-          className="login-form-button"
-          onClick={() => props.onLoginPress(account, setAPI)}
-          loading={props.isLoginLoading}
-        >
-          Cancel
-        </Button>
+        
       </Form.Item>
     </Form>
   );

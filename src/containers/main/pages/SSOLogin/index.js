@@ -146,8 +146,8 @@ const SSOLogin= (props) => {
                             >
                                 <SSOLoginForm
                                     {...props}
-                                    onLoginPress={(account, setAPI, setBill) =>
-                                        loginPressed(account, setAPI, setBill)
+                                    onLoginPress={(email, password, ) =>
+                                        loginPressed(email, password, )
                                     }
                                 />
                             </div>
