@@ -3,18 +3,9 @@ import * as ActionType from "../action-types";
 
 import { message } from 'antd'
 
-export const CREATE_ACC_action = uid => dispatch => {
-    // API.getInfoByUser(uid)
-    // .then(info => {
+export const CREATE_ACC_action = (account,ApiKey,Bill) => dispatch => {
 
-    //     if (info.errorType ==='ValidationException') {
-    //         message.error('Error. Refresh page?');
-    //     }
-    //     else {
-    //         dispatch(sso_user_sign_in_success(info.user));
-    //     }
-    // })
-    dispatch(CREATE_ACC_success());
+    dispatch(CREATE_ACC_success(account));
 }
 
 export const CREATE_ACC_success = (account) => {
