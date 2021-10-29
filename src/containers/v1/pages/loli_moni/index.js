@@ -1,12 +1,9 @@
 import React, { Component, useState } from "react";
 import { connect } from "react-redux";
-import { Modal, Button, Form, Input } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Modal, Button, Form, Input, Table, PageHeader, Layout, Menu } from "antd";
 import { useDispatch } from "react-redux";
 
 import { moveToPage, goBackToPrev } from "../../service/navigation/services";
-
-import { Table, Space, Radio } from "antd";
 
 const Test = (props) => {
   const [account, setAccount] = useState("");
@@ -16,7 +13,7 @@ const Test = (props) => {
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -119,20 +116,33 @@ const Test = (props) => {
     },
   ];
 
-  // function SpaceSize() {
-  //   const [size, setSize] = useState(1000);
+  const { Content} = Layout;
+
 
   return (
     <div>
-      <section>
-        <h1>LoLi Monitoring</h1>
-      </section>
 
-      <section>
-        <Button type="primary" variant="contained" style={{float: 'right'}} color="primary" className="float-right" onClick={showModal}>
+      <Layout>
+        <PageHeader 
+        title='LoLi Monitoring'
+        />
+
+        <Content style = {{padding: '10px 25px'}}>
+        <Button type="primary" variant="contained" 
+          style={{
+            float: 'right'
+            // display: 'flex',
+            // flex: 1,
+            // justifyContent: 'flex-end'
+          }} 
+          color="primary" 
+          className="float-right" 
+          onClick={showModal}
+        >
           Create Account
         </Button>
-      </section>
+
+      <Layout>
       <Modal
         visible={isModalVisible}
         onCancel={handleCancel}
@@ -142,40 +152,44 @@ const Test = (props) => {
           <Button key="cancel"  onClick={handleCancel}>Cancel</Button>
         ]}
       >
-        <label>Add New Account</label>
-        <Form.Item style={{ marginBottom: "15px" }}>
-          <label> Account</label>
+         <Form
+            labelCol={{ span:8 }}
+            wrapperCol={{span:13}}
+            layout="horizontol"
+            marginBottom= "15px"
+            onChange={(e) => setAccount(e.target.value)}
+        >
+        <div>
+        <h2>Add New Account</h2>
+        </div>
+        <Form.Item label='Account'>
           <Input
-            prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
             placeholder="Account"
             value={account}
-            onChange={(e) => setAccount(e.target.value)}
           />
         </Form.Item>
-        <Form.Item style={{ marginBottom: "15px" }}>
-          <label> API Key</label>
+        <Form.Item label='API key'>
           <Input
-            prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
             placeholder="API Key"
             value={api}
-            onChange={(e) => setAPI(e.target.value)}
           />
         </Form.Item>
 
-        <Form.Item style={{ marginBottom: "15px" }}>
-          <label> Next Month Bill Date</label>
+        <Form.Item label='Next Month Bill Date'>
           <Input
-            prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
             placeholder="Next Month Bill Date"
             value={bill}
-            onChange={(e) => setBill(e.target.value)}
           />
         </Form.Item>
+        </Form>
       </Modal>
+      </Layout>
+      </Content>
+      </Layout>
 
-      <section>
-        <Table dataSource={dataSource} columns={columns} />;
-      </section>
+      <div>
+        <Table style={{margin:'50px'}}dataSource={dataSource} columns={columns} />;
+      </div>
     </div>
   );
 
