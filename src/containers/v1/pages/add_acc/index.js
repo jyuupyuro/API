@@ -1,24 +1,23 @@
-import React, { Component,useState } from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react'
 import { Modal, Button } from 'antd'
 
 
 import { useDispatch } from 'react-redux'
 
-import {moveToPage,goBackToPrev,} from '../../service/navigation/services'
+import {goBackToPrev} from '../../service/navigation/services'
 
-const Test = props => {
+const Test1 = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
       setIsModalVisible(true);
     };
-  
+
     const handleOk = () => {
       setIsModalVisible(false);
     };
-  
+
     const handleCancel = () => {
       setIsModalVisible(false);
     };
@@ -28,8 +27,6 @@ const Test = props => {
         <div>
             <h1>Hello</h1>
 
-            
-            
             <Button type="primary" onClick={showModal}>
                     Open Modal
                 </Button>
@@ -50,7 +47,7 @@ const Test = props => {
 
         </div>
     )
-    
+
 }
 
-export default Test;
+export default Test1;
