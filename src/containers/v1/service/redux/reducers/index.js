@@ -1,20 +1,12 @@
-import * as ActionTypes from '../action-types'
+import { combineReducers } from "redux";
 
-export const account = (state = {}, action) => {
-    switch (action.type) {
-        case ActionTypes.CREATE_ACC: {
-            let account = action.user;
-            return ({
-                uid : "dummyData"
-            })
-            // return({
-            //     ...state,
-            //     ...user[0],
-            //     stages: user
-            // });
-        }
-        default: {
-            return state;
-        }
-    }
-}
+/**
+ * Main reducers
+ */
+// import {user} from './user'
+import {account} from './account'
+
+export const v1Reducer = combineReducers({
+    // user,
+    account
+})

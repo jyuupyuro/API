@@ -1,102 +1,109 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState, useRef } from "react";
+import { Table, Button } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { get_accounts } from "../../../service/redux/actions/account"
 
 const TableOutput = () => {
 
-    const dataSource = [
-        {
-          key: "1",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-        {
-          key: "2",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-        {
-          key: "3",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-        {
-          key: "4",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-        {
-          key: "5",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-        {
-          key: "6",
-          last_updated: "Steve Rogers",
-          acc: 105,
-          status: "10 Downing Street",
-          usage: "Blabla",
-          usage_per: "uuefnriw",
-          next_mon_bill_date: "12/10/20",
-        },
-      ];
-    
-      const columns = [
-        {
-          title: "Last Updated",
-          dataIndex: "last_updated",
-          key: "last_updated",
-        },
-        {
-          title: "Account",
-          dataIndex: "acc",
-          key: "acc",
-        },
-        {
-          title: "Status",
-          dataIndex: "status",
-          key: "status",
-        },
-        {
-          title: "Usage",
-          dataIndex: "usage",
-          key: "usage",
-        },
-        {
-          title: "Usage Percentage",
-          dataIndex: "usage_per",
-          key: "usage_per",
-        },
-        {
-          title: "Next Month Bill",
-          dataIndex: "next_mon_bill_date",
-          key: "next_mon_bill_date",
-        },
-      ];
+  const [dataSource, setdatasource] = useState([])
 
-      return(
-        <Table style={{margin:'50px'}}dataSource={dataSource} columns={columns} />
-      );
+  const dispatch = useDispatch()
+  const accounts = useSelector(state => state.containers.v1.account)
+  
+  useEffect(() => {
+
+    console.log("Component Did mount")
+    dispatch(get_accounts())
+  }, [])
+
+  const usePrevious = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+
+  const prevAccounts = usePrevious(accounts)
+
+  useEffect(() => {
+    if (
+      JSON.stringify(prevAccounts) !== JSON.stringify(accounts)
+    ) {
+      setdatasource(Object.values(accounts.byAccountId).map(account => {
+        return{
+          key: account.accountID,
+          ...account
+        }
+      }))
+    }
+  })
+
+
+  const columns = [
+    {
+      title: "Service",
+      dataIndex: "service",
+      key: "service",
+    },
+    {
+      title: "Associate",
+      dataIndex: "associate",
+      key: "associate",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+    {
+      title: "Project Code",
+      dataIndex: "usage",
+      key: "usage",
+    },
+    {
+      title: "Usage",
+      dataIndex: "usage",
+      key: "usage",
+    },
+    {
+      title: "Usage Percent",
+      dataIndex: "usagepercentage",
+      key: "usagepercentage",
+    },
+    {
+      title: "Applied At",
+      dataIndex: "appliedAt",
+      key: "appliedAt",
+    },
+    {
+      title: "Next Month Bill Date",
+      dataIndex: "nextmonthbill",
+      key: "nextmonthbill",
+    },
+    {
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+    },
+    {
+      title: "Password",
+      dataIndex: "password",
+      key: "password",
+    },
+    {
+      title: "API Key",
+      dataIndex: "next_mon_bill_date",
+      key: "next_mon_bill_date",
+    },
+  ];
+
+  return (
+    <div>
+      <Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} />
+    </div>
+  );
 }
 
 
-  export default TableOutput;
+export default TableOutput;

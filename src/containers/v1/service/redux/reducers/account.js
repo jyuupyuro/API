@@ -1,10 +1,25 @@
-import { combineReducers } from "redux";
+import * as ActionTypes from '../action-types'
 
-/**
- * Main reducers
- */
-import {account} from './user'
+const defaultstate = {
+    byAccountId: {}
+}
+export const account = (state = defaultstate, action) => {
+    let newState = JSON.parse(JSON.stringify(state));
 
-export const mainReducer = combineReducers({
-    account
-})
+    switch (action.type) {
+        case "GET_ACCOUNT": {
+            
+            console.log("Get accounts")
+            
+            action.accounts.map(account => {
+              newState.byAccountId[account.accountID] = account
+            })
+          }
+          console.log(newState)
+          return newState
+
+        default: {
+            return state;
+        }
+    }
+}
