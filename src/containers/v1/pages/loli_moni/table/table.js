@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table, Button } from "antd";
+import { Table, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
 
 const TableOutput = () => {
+  const { Option } = Select;
 
   const [dataSource, setdatasource] = useState([])
 
@@ -93,13 +94,39 @@ const TableOutput = () => {
     },
     {
       title: "API Key",
-      dataIndex: "next_mon_bill_date",
-      key: "next_mon_bill_date",
+      dataIndex: "apiKey",
+      key: "apiKey",
     },
   ];
 
   return (
     <div>
+      <Select
+              placeholder="API Status"
+              style={{ width: 120 }}
+              onChange={(e) => {
+                console.log(e);
+              }}
+              allowClear
+            >
+              <Option value="0">Inactive</Option>
+              <Option value="1">Active</Option>
+              <Option value="2">Suspended</Option>
+            </Select>
+            <Select
+              placeholder="API Usage"
+              style={{ width: 120 }}
+              onChange={(e) => {
+                console.log(e);
+                
+              }}
+              allowClear
+            >
+              <Option value="1st">1-25</Option>
+              <Option value="2nd">25-50</Option>
+              <Option value="3rd">50-75</Option>
+              <Option value="4th">75-100</Option>
+            </Select>
       <Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} />
     </div>
   );

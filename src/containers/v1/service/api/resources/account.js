@@ -12,4 +12,5 @@ export const getAllACC = () => {
         })
     })
     .then(res => res.json())
+    .catch(err => console.log(err))
 }

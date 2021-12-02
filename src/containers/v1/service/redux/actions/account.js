@@ -26,10 +26,7 @@ export const get_account_success = (accounts) => {
     }
   }
 
-  export const get_accounts = (cb) => dispatch => {
-
-    console.log("Get accounts")
-    //dispatch(setLoadingSubmit())
+  export const get_accounts = () => dispatch => {
   
     API.getAllACC()
     .then((data) => {
@@ -46,8 +43,8 @@ export const get_account_success = (accounts) => {
             dispatch(get_account_success(data.accounts));
         }
     })
-    .finally(() => {
-        cb && cb()
-        //dispatch(unsetLoadingSubmit());
+    .catch(err => {
+      console.log(err)
     })
+
   }
