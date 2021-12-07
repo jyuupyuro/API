@@ -65,6 +65,7 @@ const TableOutput = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      width: '15%',
       fixed:"left",
       filters: [
         {
@@ -84,9 +85,10 @@ const TableOutput = () => {
 
     },
     {
-      title: "Usage Percent",
+      title: "Usage Percentage",
       dataIndex: "usagepercentage",
       key: "usagepercentage",
+      width: '15%',
       fixed:"left",
       sorter: (a, b) => a.usagepercentage - b.usagepercentage,
       filters: [
@@ -113,47 +115,56 @@ const TableOutput = () => {
       title: "Service",
       dataIndex: "service",
       key: "service",
+      width: '15%',
     },
     {
       title: "Associate",
       dataIndex: "associate",
       key: "associate",
+      width: '15%',
     },
     {
       title: "Project Code",
-      dataIndex: "usage",
-      key: "usage",
+      dataIndex: "projectCode",
+      key: "projectCode",
+      width: '10%',
     },
     {
       title: "Usage",
       dataIndex: "usage",
       key: "usage",
+      width: '10%',
     },
     {
       title: "Applied At",
       dataIndex: "appliedAt",
       key: "appliedAt",
+      width: '10%',
     },
     {
       title: "Next Month Bill Date",
       dataIndex: "nextmonthbill",
       key: "nextmonthbill",
+      width: '10%',
     },
     { 
       title: "Username", 
       dataIndex: "username", 
-      key: "username" 
+      key: "username",
+      width: '25%', 
     },
     { 
       title: "Password", 
       dataIndex: "password", 
-      key: "password" 
+      key: "password",
+      width: '30%', 
     },
     { 
       title: "API Key", 
       dataIndex: "apiKey", 
       key: "apiKey",
       fixed: "right",
+      width: '20%',
     }
     
   ];
@@ -164,7 +175,7 @@ const TableOutput = () => {
 
   return (
     
-   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ x: 1300 }}
+   (<Table style={{ margin: '50px', width: '90%' }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ x: 1500, y: 300 }}
     // expandable={{
     //   expandedRowRender,
     //   rowExpandable: record => record.accountID !== 'Not Expandable',

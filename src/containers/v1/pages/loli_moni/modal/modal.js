@@ -2,8 +2,17 @@ import React, { useState } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
 
 const ModalAdd = (props) => {
-    const [account, setAccount] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [api, setAPI] = useState("");
+    const [status, setStatus] = useState("");
+    const [usagePercentage, setUsagePercentage] = useState("");
+    const [service, setService] = useState("");
+    const [associate, setAssociate] = useState("");
+    const [projectCode, setProjectCode] = useState("");
+    const [usage, setUsage] = useState("");
+    const [appliedAt, setAppliedAt] = useState("");
+    const [nextMonthBill, setNextMonthBill] = useState("");
     const [bill, setBill] = useState("");
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,18 +60,83 @@ const ModalAdd = (props) => {
         <div>
         <h2>Add New Account</h2>
         </div>
-        <Form.Item label='Account'>
+        <Form.Item label='Username'>
           <Input
-            placeholder="Account"
-            value={account}
-            onChange={(e) => setAccount(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+        </Form.Item>
+        <Form.Item label='Password'>
+          <Input
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Item>
+
         <Form.Item label='API key'>
           <Input
             placeholder="API Key"
             value={api}
             onChange={(e) => setAPI(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Status'>
+          <Input
+            placeholder="Status"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Usage Percentage'>
+          <Input
+            placeholder="Usage Percentage"
+            value={usagePercentage}
+            onChange={(e) => setUsagePercentage(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Usage'>
+          <Input
+            placeholder="Usage"
+            value={usage}
+            onChange={(e) => setUsage(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Service'>
+          <Input
+            placeholder="Service"
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Project Code'>
+          <Input
+            placeholder="Project Code"
+            value={projectCode}
+            onChange={(e) => setProjectCode(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Applied At'>
+          <Input
+            placeholder="Applied At"
+            value={appliedAt}
+            onChange={(e) => setAppliedAt(e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label='Associate'>
+          <Input
+            placeholder="Associate"
+            value={associate}
+            onChange={(e) => setAssociate(e.target.value)}
           />
         </Form.Item>
 
