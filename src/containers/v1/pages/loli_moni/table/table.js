@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import ReactDOM from 'react-dom';
-import { Table, Button, Select } from "antd";
+import { Table, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
 
 const TableOutput = () => {
-  const { Option } = Select;
 
   const [dataSource, setdatasource] = useState([])
 
@@ -41,43 +39,33 @@ const TableOutput = () => {
     }
   })
 
-  const expandedRowRender = () => {
-    const columns = [
-      { 
-        title: "Username", 
-        dataIndex: "username", 
-        key: "username" 
-      },
-      { 
-        title: "Password", 
-        dataIndex: "password", 
-        key: "password" 
-      },
-      { 
-        title: "API Key", 
-        dataIndex: "apiKey", 
-        key: "apiKey"
-      }
-    ]
-        return <Table columns={columns} dataSource={dataSource} pagination={false} />;
-    };
+  // const expandedRowRender = () => {
+  //   const columns = [
+  //     { 
+  //       title: "Username", 
+  //       dataIndex: "username", 
+  //       key: "username" 
+  //     },
+  //     { 
+  //       title: "Password", 
+  //       dataIndex: "password", 
+  //       key: "password" 
+  //     },
+  //     { 
+  //       title: "API Key", 
+  //       dataIndex: "apiKey", 
+  //       key: "apiKey"
+  //     }
+  //   ]
+  //       return <Table columns={columns} dataSource={dataSource} pagination={false} />;
+  //   };
 
   const columns = [
     {
-      title: "Service",
-      dataIndex: "service",
-      key: "service",
-    },
-    {
-      title: "Associate",
-      dataIndex: "associate",
-      key: "associate",
-    },
-    {
-      
       title: "Status",
       dataIndex: "status",
       key: "status",
+      fixed:"left",
       filters: [
         {
           text: 'Active',
@@ -96,19 +84,11 @@ const TableOutput = () => {
 
     },
     {
-      title: "Project Code",
-      dataIndex: "usage",
-      key: "usage",
-    },
-    {
-      title: "Usage",
-      dataIndex: "usage",
-      key: "usage",
-    },
-    {
       title: "Usage Percent",
       dataIndex: "usagepercentage",
       key: "usagepercentage",
+      fixed:"left",
+      sorter: (a, b) => a.usagepercentage - b.usagepercentage,
       filters: [
         {
           text: '0-25%',
@@ -130,6 +110,26 @@ const TableOutput = () => {
       onFilter: (value, record) => record.usagepercentage >=value[0] && record.usagepercentage <= value[1]
     },
     {
+      title: "Service",
+      dataIndex: "service",
+      key: "service",
+    },
+    {
+      title: "Associate",
+      dataIndex: "associate",
+      key: "associate",
+    },
+    {
+      title: "Project Code",
+      dataIndex: "usage",
+      key: "usage",
+    },
+    {
+      title: "Usage",
+      dataIndex: "usage",
+      key: "usage",
+    },
+    {
       title: "Applied At",
       dataIndex: "appliedAt",
       key: "appliedAt",
@@ -139,6 +139,22 @@ const TableOutput = () => {
       dataIndex: "nextmonthbill",
       key: "nextmonthbill",
     },
+    { 
+      title: "Username", 
+      dataIndex: "username", 
+      key: "username" 
+    },
+    { 
+      title: "Password", 
+      dataIndex: "password", 
+      key: "password" 
+    },
+    { 
+      title: "API Key", 
+      dataIndex: "apiKey", 
+      key: "apiKey",
+      fixed: "right",
+    }
     
   ];
 
@@ -148,11 +164,11 @@ const TableOutput = () => {
 
   return (
     
-   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange}
-    expandable={{
-      expandedRowRender,
-      rowExpandable: record => record.accountID !== 'Not Expandable',
-    }}
+   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ x: 1300 }}
+    // expandable={{
+    //   expandedRowRender,
+    //   rowExpandable: record => record.accountID !== 'Not Expandable',
+    // }}
     />)
    
   );
