@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import ReactDOM from 'react-dom';
 import { Table, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
@@ -53,9 +54,26 @@ const TableOutput = () => {
       key: "associate",
     },
     {
+      
       title: "Status",
       dataIndex: "status",
       key: "status",
+      filters: [
+        {
+          text: 'Active',
+          value: 'active',
+        },
+        {
+          text: 'Inactive',
+          value: 'inactive',
+        },
+        {
+          text: 'Suspended',
+          value: 'Suspended',
+        },
+      ],
+      onFilter: (value, record) => record.address.indexOf(value) === 0,
+
     },
     {
       title: "Project Code",
@@ -99,38 +117,14 @@ const TableOutput = () => {
     },
   ];
 
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+  }
+
   return (
-    <div>
-      <Select
-              placeholder="API Status"
-              style={{ width: 120 }}
-              onChange={(e) => {
-                console.log(e);
-              }}
-              allowClear
-            >
-              <Option value="0">Inactive</Option>
-              <Option value="1">Active</Option>
-              <Option value="2">Suspended</Option>
-            </Select>
-            <Select
-              placeholder="API Usage"
-              style={{ width: 120 }}
-              onChange={(e) => {
-                console.log(e);
-                
-              }}
-              allowClear
-            >
-              <Option value="1st">1-25</Option>
-              <Option value="2nd">25-50</Option>
-              <Option value="3rd">50-75</Option>
-              <Option value="4th">75-100</Option>
-            </Select>
-      <Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} />
-    </div>
+    
+   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange} />)
+   
   );
 }
-
-
 export default TableOutput;
