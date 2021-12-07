@@ -41,6 +41,26 @@ const TableOutput = () => {
     }
   })
 
+  const expandedRowRender = () => {
+    const columns = [
+      { 
+        title: "Username", 
+        dataIndex: "username", 
+        key: "username" 
+      },
+      { 
+        title: "Password", 
+        dataIndex: "password", 
+        key: "password" 
+      },
+      { 
+        title: "API Key", 
+        dataIndex: "apiKey", 
+        key: "apiKey"
+      }
+    ]
+        return <Table columns={columns} dataSource={dataSource} pagination={false} />;
+    };
 
   const columns = [
     {
@@ -69,10 +89,10 @@ const TableOutput = () => {
         },
         {
           text: 'Suspended',
-          value: 'Suspended',
+          value: 'suspended',
         },
       ],
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
 
     },
     {
@@ -89,6 +109,25 @@ const TableOutput = () => {
       title: "Usage Percent",
       dataIndex: "usagepercentage",
       key: "usagepercentage",
+      filters: [
+        {
+          text: '0-25%',
+          value: [0,25]
+        },
+        {
+          text: '25-50%',
+          value: [25,50],
+        },
+        {
+          text: '50-75%',
+          value: [50,75]
+        },
+        {
+          text: '75-100%',
+          value: [75,100]
+        },
+      ],
+      onFilter: (value, record) => record.usagepercentage >=value[0] && record.usagepercentage <= value[1]
     },
     {
       title: "Applied At",
@@ -100,21 +139,7 @@ const TableOutput = () => {
       dataIndex: "nextmonthbill",
       key: "nextmonthbill",
     },
-    {
-      title: "Username",
-      dataIndex: "username",
-      key: "username",
-    },
-    {
-      title: "Password",
-      dataIndex: "password",
-      key: "password",
-    },
-    {
-      title: "API Key",
-      dataIndex: "apiKey",
-      key: "apiKey",
-    },
+    
   ];
 
   function onChange(pagination, filters, sorter, extra) {
@@ -123,7 +148,12 @@ const TableOutput = () => {
 
   return (
     
-   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange} />)
+   (<Table style={{ margin: '50px' }} dataSource={dataSource} columns={columns} onChange={onChange}
+    expandable={{
+      expandedRowRender,
+      rowExpandable: record => record.accountID !== 'Not Expandable',
+    }}
+    />)
    
   );
 }
