@@ -12,7 +12,6 @@ const ModalAdd = (props) => {
     const [projectCode, setProjectCode] = useState("");
     const [usage, setUsage] = useState("");
     const [appliedAt, setAppliedAt] = useState("");
-    const [nextMonthBill, setNextMonthBill] = useState("");
     const [bill, setBill] = useState("");
 
     const [isModalVisible, setIsModalVisible] = useState(false);
