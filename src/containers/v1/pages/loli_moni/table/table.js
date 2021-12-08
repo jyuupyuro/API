@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Table, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
+import moment from 'moment';
 
 const TableOutput = () => {
 
@@ -33,32 +34,40 @@ const TableOutput = () => {
       setdatasource(Object.values(accounts.byAccountId).map(account => {
         return{
           key: account.accountID,
-          ...account
+          ...account,
+
+          a : account.username,
+          b : account.password,
+          c : account.apiKey,
+
+          appliedAt: moment(account.appliedAt).format('MMMM Do YYYY, h:mm:ss a')
         }
       }))
     }
   })
 
-  // const expandedRowRender = () => {
-  //   const columns = [
-  //     { 
-  //       title: "Username", 
-  //       dataIndex: "username", 
-  //       key: "username" 
-  //     },
-  //     { 
-  //       title: "Password", 
-  //       dataIndex: "password", 
-  //       key: "password" 
-  //     },
-  //     { 
-  //       title: "API Key", 
-  //       dataIndex: "apiKey", 
-  //       key: "apiKey"
-  //     }
-  //   ]
-  //       return <Table columns={columns} dataSource={dataSource} pagination={false} />;
-  //   };
+  function NestedTable(){
+    const expanded = (a) => {
+        const columns = [
+          { 
+            title: "Username", 
+            dataIndex: "username", 
+            key: "username" 
+          },
+          { 
+            title: "Password", 
+            dataIndex: "password", 
+            key: "password" 
+          },
+          { 
+            title: "API Key", 
+            dataIndex: "apiKey", 
+            key: "apiKey"
+          }
+    ];
+        return <Table columns={columns} dataSource={[a]} pagination={false} />;
+    };
+  
 
   const columns = [
     {
@@ -145,27 +154,28 @@ const TableOutput = () => {
       title: "Next Month Bill Date",
       dataIndex: "nextmonthbill",
       key: "nextmonthbill",
+      fixed: "right",
       width: '10%',
     },
-    { 
-      title: "Username", 
-      dataIndex: "username", 
-      key: "username",
-      width: '25%', 
-    },
-    { 
-      title: "Password", 
-      dataIndex: "password", 
-      key: "password",
-      width: '30%', 
-    },
-    { 
-      title: "API Key", 
-      dataIndex: "apiKey", 
-      key: "apiKey",
-      fixed: "right",
-      width: '20%',
-    }
+    // { 
+    //   title: "Username", 
+    //   dataIndex: "username", 
+    //   key: "username",
+    //   width: '25%', 
+    // },
+    // { 
+    //   title: "Password", 
+    //   dataIndex: "password", 
+    //   key: "password",
+    //   width: '30%', 
+    // },
+    // { 
+    //   title: "API Key", 
+    //   dataIndex: "apiKey", 
+    //   key: "apiKey",
+    //   fixed: "right",
+    //   width: '20%',
+    // }
     
   ];
 
@@ -176,12 +186,15 @@ const TableOutput = () => {
   return (
     
    (<Table style={{ margin: '50px', width: '90%' }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ x: 1500, y: 300 }}
-    // expandable={{
-    //   expandedRowRender,
-    //   rowExpandable: record => record.accountID !== 'Not Expandable',
-    // }}
+    expandable={{
+      expandedRowRender: record => expanded(record),
+    }}
     />)
    
   );
 }
+return <NestedTable/>
+
+}
+
 export default TableOutput;
