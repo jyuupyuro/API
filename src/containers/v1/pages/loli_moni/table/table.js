@@ -40,7 +40,8 @@ const TableOutput = () => {
           b : account.password,
           c : account.apiKey,
 
-          appliedAt: moment(account.appliedAt).format('MMMM Do YYYY, h:mm:ss a')
+          appliedAt: moment(account.appliedAt).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+          lastupdatedAt: moment(account.lastupdatedAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
         }
       }))
     }
@@ -74,7 +75,7 @@ const TableOutput = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
-      width: '15%',
+      width: '10%',
       fixed:"left",
       filters: [
         {
@@ -151,6 +152,12 @@ const TableOutput = () => {
       width: '10%',
     },
     {
+      title: "Last Updated At",
+      dataIndex: "lastupdatedAt",
+      key: "lastupdatedAt",
+      width: '10%',
+    },
+    {
       title: "Next Month Bill Date",
       dataIndex: "nextmonthbill",
       key: "nextmonthbill",
@@ -185,7 +192,7 @@ const TableOutput = () => {
 
   return (
     
-   (<Table style={{ margin: '50px', width: '90%' }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ x: 1500, y: 300 }}
+   (<Table style={{ margin: '50px', width: '95%', padding: '5px' }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
     expandable={{
       expandedRowRender: record => expanded(record),
     }}
