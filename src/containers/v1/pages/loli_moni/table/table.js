@@ -164,26 +164,7 @@ const TableOutput = () => {
       fixed: "right",
       width: '10%',
     },
-    // { 
-    //   title: "Username", 
-    //   dataIndex: "username", 
-    //   key: "username",
-    //   width: '25%', 
-    // },
-    // { 
-    //   title: "Password", 
-    //   dataIndex: "password", 
-    //   key: "password",
-    //   width: '30%', 
-    // },
-    // { 
-    //   title: "API Key", 
-    //   dataIndex: "apiKey", 
-    //   key: "apiKey",
-    //   fixed: "right",
-    //   width: '20%',
-    // }
-    
+
   ];
 
   function onChange(pagination, filters, sorter, extra) {

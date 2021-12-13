@@ -14,3 +14,14 @@ export const getAllACC = () => {
     .then(res => res.json())
     .catch(err => console.log(err))
 }
+export const addAccount = (account) => {
+    return fetch("https://2eotmwvd37.execute-api.ap-southeast-1.amazonaws.com/2021/account/accountAdd", {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            ...account
+        })
+    })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+}

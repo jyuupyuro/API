@@ -3,48 +3,61 @@ import * as ActionType from "../action-types";
 
 import { message } from 'antd'
 
-// export const CREATE_ACC_action = (account,ApiKey,Bill) => dispatch => {
-
-//     dispatch(CREATE_ACC_success(account));
-//     dispatch(CREATE_ACC_success(ApiKey));
-//     dispatch(CREATE_ACC_success(Bill));
-// }
-
-// export const CREATE_ACC_success = (account, ApiKey, Bill) => {
-//     return {
-//         type: ActionType.CREATE_ACC,
-//         account,
-//         ApiKey,
-//         Bill
-//     };
-// }
-
 export const get_account_success = (accounts) => {
     return {
       type : "GET_ACCOUNT",
       accounts
+    }  
+}
+
+export const get_account_success2 = (account) => {
+    return {
+      type : "GET_ACCOUNT_2",
+      account
     }
   }
 
-  export const get_accounts = () => dispatch => {
-  
-    API.getAllACC()
-    .then((data) => {
-  
-        console.log("Get account result",data)
+export const get_accounts = () => dispatch => {
 
-        if (data.status !== 200) {
-            if (data.message) {
-                message.error("Failed to get account: ", data.message)
-            }
-        }
-        else {
-            console.log("Inside else")
-            dispatch(get_account_success(data.accounts));
-        }
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  API.getAllACC()
+  .then((data) => {
 
-  }
+      console.log("Get account result",data)
+
+      if (data.status !== 200) {
+          if (data.message) {
+              message.error("Failed to get account: ", data.message)
+          }
+      }
+      else {
+          console.log("Inside else")
+          dispatch(get_account_success(data.accounts));
+      }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
+}
+
+export const add_account = (account) => dispatch => {
+
+  API.addAccount(account)
+  .then((data) => {
+
+      console.log("Add account result",data)
+
+      if (data.status !== 200) {
+          if (data.message) {
+              message.error("Failed to add account Please enter Valid Informations ", data.message)
+          }
+      }
+      else {
+          dispatch(get_account_success2(data.account));
+      }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
+}

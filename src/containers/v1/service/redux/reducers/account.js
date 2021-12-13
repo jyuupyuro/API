@@ -17,7 +17,14 @@ export const account = (state = defaultstate, action) => {
           }
           console.log(newState)
           return newState
-
+        case "GET_ACCOUNT_2": {
+            
+            console.log("Get accounts 2 ")
+            
+            newState.byAccountId[action.account.accountID] = action.account
+            console.log("newState",newState)
+            return newState
+        }
         default: {
             return state;
         }
