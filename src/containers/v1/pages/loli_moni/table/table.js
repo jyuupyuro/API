@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Table, Select } from "antd";
-import {EditOutlined} from "@ant-design/icons"
+import { EditOutlined } from "@ant-design/icons"
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
-import {moveToPage} from "../../../service/navigation/services/index"
+import { moveToPage } from "../../../service/navigation/services/index"
 import moment from 'moment';
 
 const TableOutput = () => {
@@ -38,9 +38,7 @@ const TableOutput = () => {
           key: account.accountID,
           ...account,
 
-          // a: account.username,
-          // b: account.password,
-          // c: account.apiKey,
+
 
           appliedAt: moment(account.appliedAt).format("L"),
           lastupdatedAt: moment(account.lastupdatedAt).format("L")
@@ -165,12 +163,13 @@ const TableOutput = () => {
       },
       {
         title: "Action",
-        render: (a,b,c,d) => {
+        render: (a, b, c, d) => {
           return (
-            <EditOutlined onClick = {()=> {   dispatch(moveToPage("/update", b));
+            <EditOutlined onClick={() => {
+              dispatch(moveToPage("/update", b));
 
 
-            }}/>
+            }} />
           )
         },
         width: '10%',
@@ -184,7 +183,7 @@ const TableOutput = () => {
 
     return (
 
-      (<Table style={{ margin: '50px', width: '92%', padding: '0px 5px', marginTop:100 }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
+      (<Table style={{ margin: '50px', width: '92%', padding: '0px 5px', marginTop: 100 }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
         expandable={{
           expandedRowRender: record => expanded(record),
         }}

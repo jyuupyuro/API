@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
+import { Modal, Button, Form, Input, Select } from 'antd';
 
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
+const { Option } = Select;
 
 const ModalAdd = () => {
 
@@ -44,7 +45,7 @@ const ModalAdd = () => {
       <Button type="primary" variant="contained"
         style={{
           float: 'right',
-          marginTop:40
+          marginTop: 40
         }}
         color="primary"
         className="float-right"
@@ -93,10 +94,12 @@ const ModalAdd = () => {
             </Form.Item>
 
             <Form.Item label='Status'>
-              <Input
-                placeholder="Status"
-                onChange={(e) => { updateAccount("status", e.target.value) }}
-              />
+              <Select onChange={(value) => { 
+                updateAccount("status", value) }}>
+                <Option value="active">Active</Option>
+                <Option value="inactive">Inactive</Option>
+                <Option value="suspended">Suspended</Option>
+              </Select>
             </Form.Item>
 
             <Form.Item label='Usage Percentage'>
