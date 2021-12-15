@@ -38,9 +38,9 @@ const TableOutput = () => {
           key: account.accountID,
           ...account,
 
-          a: account.username,
-          b: account.password,
-          c: account.apiKey,
+          // a: account.username,
+          // b: account.password,
+          // c: account.apiKey,
 
           appliedAt: moment(account.appliedAt).format("dddd, MMMM Do YYYY, h:mm:ss a"),
           lastupdatedAt: moment(account.lastupdatedAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
@@ -167,7 +167,11 @@ const TableOutput = () => {
         title: "Action",
         render: (a,b,c,d) => {
           return (
-            <EditOutlined onClick = {()=> {dispatch(moveToPage("/update", a));}}/>
+            <EditOutlined onClick = {()=> {dispatch(moveToPage("/update", a));}}/>,
+            <EditOutlined onClick = {()=> {   dispatch(moveToPage("/update", b));
+
+
+            }}/>
           )
         },
         width: '10%',
