@@ -42,8 +42,8 @@ const TableOutput = () => {
           // b: account.password,
           // c: account.apiKey,
 
-          appliedAt: moment(account.appliedAt).format("dddd, MMMM Do YYYY, h:mm:ss a"),
-          lastupdatedAt: moment(account.lastupdatedAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
+          appliedAt: moment(account.appliedAt).format("L"),
+          lastupdatedAt: moment(account.lastupdatedAt).format("L")
         }
       }))
     }

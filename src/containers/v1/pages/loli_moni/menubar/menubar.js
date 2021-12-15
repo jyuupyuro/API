@@ -42,8 +42,7 @@ class SiderDemo extends React.Component {
             padding: 24,
             margin: 0,
             minHeight: 300,
-            backgroundImage:`url(C:/Users/yuven/WAD/loli-map-sel-web/src/assets/pframe/theme/blue-low-poly.jpg)`,
-            backgroundSize:'cover',
+            backgroundColor:''
 
           }}
         >
