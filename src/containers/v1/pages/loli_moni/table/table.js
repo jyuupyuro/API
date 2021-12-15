@@ -167,7 +167,6 @@ const TableOutput = () => {
         title: "Action",
         render: (a,b,c,d) => {
           return (
-            <EditOutlined onClick = {()=> {dispatch(moveToPage("/update", a));}}/>,
             <EditOutlined onClick = {()=> {   dispatch(moveToPage("/update", b));
 
 
