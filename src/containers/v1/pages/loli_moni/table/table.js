@@ -74,11 +74,22 @@ const TableOutput = () => {
 
     const columns = [
       {
+        title: "Associate",
+        dataIndex: "associate",
+        key: "associate",
+        width: '15%',
+      },
+      {
+        title: "Service",
+        dataIndex: "service",
+        key: "service",
+        width: '15%',
+      },
+      {
         title: "Status",
         dataIndex: "status",
         key: "status",
         width: '10%',
-        fixed: "left",
         filters: [
           {
             text: 'Active',
@@ -97,11 +108,16 @@ const TableOutput = () => {
 
       },
       {
+        title: "Project Code",
+        dataIndex: "projectCode",
+        key: "projectCode",
+        width: '10%',
+      },
+      {
         title: "Usage Percentage",
         dataIndex: "usagepercentage",
         key: "usagepercentage",
         width: '15%',
-        fixed: "left",
         sorter: (a, b) => a.usagepercentage - b.usagepercentage,
         filters: [
           {
@@ -122,24 +138,6 @@ const TableOutput = () => {
           },
         ],
         onFilter: (value, record) => record.usagepercentage >= value[0] && record.usagepercentage <= value[1]
-      },
-      {
-        title: "Service",
-        dataIndex: "service",
-        key: "service",
-        width: '15%',
-      },
-      {
-        title: "Associate",
-        dataIndex: "associate",
-        key: "associate",
-        width: '15%',
-      },
-      {
-        title: "Project Code",
-        dataIndex: "projectCode",
-        key: "projectCode",
-        width: '10%',
       },
       {
         title: "Usage",
@@ -163,17 +161,13 @@ const TableOutput = () => {
         title: "Next Month Bill Date",
         dataIndex: "nextmonthbill",
         key: "nextmonthbill",
-        fixed: "right",
         width: '10%',
       },
       {
         title: "Action",
         render: (a,b,c,d) => {
           return (
-            <EditOutlined onClick = {()=> {   dispatch(moveToPage("/update", a));
-
-
-            }}/>
+            <EditOutlined onClick = {()=> {dispatch(moveToPage("/update", a));}}/>
           )
         },
         width: '10%',
@@ -187,7 +181,7 @@ const TableOutput = () => {
 
     return (
 
-      (<Table style={{ margin: '50px', width: '95%', padding: '5px' }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
+      (<Table style={{ margin: '50px', width: '92%', padding: '0px 5px', marginTop:100 }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
         expandable={{
           expandedRowRender: record => expanded(record),
         }}
