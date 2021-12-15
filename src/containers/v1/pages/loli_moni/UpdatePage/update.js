@@ -14,7 +14,7 @@ const TableOutput = () => {
 
   useEffect(() => {
 
-    console.log("Component Did mount")
+    console.log("Component  mount")
     dispatch(get_accounts())
   }, [])
 
@@ -169,7 +169,7 @@ const TableOutput = () => {
         title: "Action",
         render: (a,b,c,d) => {
           return (
-            <EditOutlined onClick = {()=> {   dispatch(moveToPage(pageName, a));
+            <EditOutlined onClick = {()=> {   
 
 
             }}/>

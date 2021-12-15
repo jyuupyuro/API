@@ -22,7 +22,7 @@ const SSORoutes = props => {
                     ?
                         <SSOPanel currentUser={props.currentUser}/>
                     :
-                        <SSOLogin />
+                    <SSOPanel currentUser={props.currentUser}/>
                 )}
             />
         </Switch>

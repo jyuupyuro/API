@@ -52,7 +52,7 @@ import { Switch, Route } from "react-router";
  */
 import AddAccount from '../../pages/add_acc'
 import LoliMonitoring from '../../pages/loli_moni'
-import update from '../../pages/loli_moni/UpdatePage/'
+import Update from '../../pages/loli_moni/UpdatePage/update'
 
 const Routes = props => {
 
@@ -76,7 +76,7 @@ const Routes = props => {
                 exact
                 path={"/update"} 
                 render={(renderProps) => {
-                  return <Updatepage {...props} {...renderProps}/>
+                  return <Update {...props} {...renderProps}/>
                 }}
             />
         </Switch>
