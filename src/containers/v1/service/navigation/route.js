@@ -52,7 +52,7 @@ import { Switch, Route } from "react-router";
  */
 import AddAccount from '../../pages/add_acc'
 import LoliMonitoring from '../../pages/loli_moni'
-import Update from '../../pages/loli_moni/UpdatePage/update'
+import Update from '../../pages/update_page/updatepage/update'
 
 const Routes = props => {
 

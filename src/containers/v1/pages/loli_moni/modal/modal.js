@@ -123,7 +123,7 @@ const ModalAdd = () => {
             <Form.Item label='Project Code'>
               <Input
                 placeholder="Project Code"
-                onChange={(e) => { updateAccount("service", e.target.value) }}
+                onChange={(e) => { updateAccount("projectCode", e.target.value) }}
               />
             </Form.Item>
 
