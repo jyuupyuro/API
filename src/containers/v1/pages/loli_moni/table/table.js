@@ -38,10 +38,9 @@ const TableOutput = () => {
           key: account.accountID,
           ...account,
 
-
-
-          appliedAt: moment(account.appliedAt).format("L"),
-          lastupdatedAt: moment(account.lastupdatedAt).format("L")
+          appliedAt: moment(account.appliedAt).format("L, hh.mm a"),
+          lastupdatedAt: moment(account.lastupdatedAt).format("L, hh.mm a"),
+          nextmonthbill : moment(account.nextmonthbill).format("L, hh.mm a")
         }
       }))
     }
@@ -160,6 +159,7 @@ const TableOutput = () => {
         dataIndex: "nextmonthbill",
         key: "nextmonthbill",
         width: '10%',
+
       },
       {
         title: "Action",
