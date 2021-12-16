@@ -3,6 +3,9 @@ import { Modal, Button, Form, Input, Select, DatePicker, InputNumber } from 'ant
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
+import moment from 'moment'
+
+
 const { Option } = Select;
 
 const ModalAdd = () => {
@@ -152,13 +155,11 @@ const ModalAdd = () => {
 
             <Form.Item label='Applied At'>
               <DatePicker
+              label='Applied At'
                 placeholder="Applied At"
                 showTime
                 allowClear
-                format="MM-DD-YYYY HH:mm"
-                allowClear
-                onChange={(date) => { updateAccount("appliedAt", date) }}
-                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                onChange={(dt) => { updateAccount("appliedAt",dt) }}
               />
             </Form.Item>
 
@@ -167,10 +168,7 @@ const ModalAdd = () => {
                 placeholder="Next Month Bill Date"
                 showTime
                 allowClear
-                format="MM-DD-YYYY HH:mm"
-                allowClear
-                onChange={(date) => { updateAccount("nextmonthbill", date) }}
-                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                onChange={(dt) => { updateAccount("nextmonthbill",dt) }}
               />
             </Form.Item>
           </Form>
