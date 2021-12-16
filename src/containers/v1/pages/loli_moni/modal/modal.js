@@ -109,8 +109,9 @@ const ModalAdd = () => {
             </Form.Item>
 
             <Form.Item label='Status'>
-              <Select onChange={(value) => { 
-                updateAccount("status", value) }}>
+              <Select onChange={(value) => {
+                updateAccount("status", value)
+              }}>
                 <Option value="active">Active</Option>
                 <Option value="inactive">Inactive</Option>
                 <Option value="suspended">Suspended</Option>

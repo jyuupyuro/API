@@ -17,6 +17,13 @@ export const get_account_success2 = (account) => {
     }
   }
 
+  export const update_account_success = (account) => {
+    return {
+      type : "UPDATE_ACCOUNT",
+      account
+    }
+  }
+
 export const get_accounts = () => dispatch => {
 
   API.getAllACC()
@@ -54,6 +61,30 @@ export const add_account = (account) => dispatch => {
       }
       else {
           dispatch(get_account_success2(data.account));
+      }
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
+}
+
+export const update_account = (account) => dispatch => {
+
+  API.updateAccount(account)
+  .then((data) => {
+
+      console.log("updated acc:",data)
+
+      if (data.status !== 200) {    
+          if (data.message) {
+              message.error("Failed to add account Please enter Valid Informations ", data.message)
+          }
+      }
+      else {
+          dispatch(update_account_success(data.account));
+          console.log("updated acc:",data.account)
+          
       }
   })
   .catch(err => {

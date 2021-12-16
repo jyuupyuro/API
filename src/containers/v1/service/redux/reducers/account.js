@@ -25,6 +25,15 @@ export const account = (state = defaultstate, action) => {
             console.log("newState",newState)
             return newState
         }
+        case "UPDATE_ACCOUNT": {
+            
+            console.log("update accounts ")
+            
+            newState.byAccountId[action.account.accountID] = action.account
+            console.log("newState",newState)
+            return newState
+          }
+
         default: {
             return state;
         }
