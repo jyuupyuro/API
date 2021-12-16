@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Input, Select } from 'antd';
-
+import { Modal, Button, Form, Input, Select, DatePicker, InputNumber } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
 const { Option } = Select;
@@ -70,18 +70,21 @@ const ModalAdd = () => {
             marginBottom="15px"
           >
             <div>
-              <h2>Add New Account</h2>
+              <h1 style={{textAlign:"center", marginBottom:25}}>Create New Account</h1>
             </div>
             <Form.Item label='Username'>
               <Input
                 placeholder="Username"
+                allowClear
                 onChange={(e) => { updateAccount("username", e.target.value) }}
               />
 
             </Form.Item>
             <Form.Item label='Password'>
-              <Input
+              <Input.Password
                 placeholder="Password"
+                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                allowClear
                 onChange={(e) => { updateAccount("password", e.target.value) }}
               />
             </Form.Item>
@@ -89,7 +92,16 @@ const ModalAdd = () => {
             <Form.Item label='API key'>
               <Input
                 placeholder="API Key"
+                allowClear
                 onChange={(e) => { updateAccount("apiKey", e.target.value) }}
+              />
+            </Form.Item>
+
+            <Form.Item label='Associate'>
+              <Input
+                placeholder="Associate"
+                allowClear
+                onChange={(e) => { updateAccount("associate", e.target.value) }}
               />
             </Form.Item>
 
@@ -103,52 +115,63 @@ const ModalAdd = () => {
               </Select>
             </Form.Item>
 
-            <Form.Item label='Usage Percentage'>
+            <Form.Item label='Project Code'>
               <Input
+                placeholder="Project Code"
+                allowClear
+                onChange={(e) => { updateAccount("projectCode", e.target.value) }}
+              />
+            </Form.Item>
+
+            <Form.Item label='Usage Percentage'>
+              <InputNumber
                 placeholder="Usage Percentage"
-                onChange={(e) => { updateAccount("usagepercentage", e.target.value) }}
+                min={0}
+                max={100}
+                defaultValue={0}
+                onChange={(num) => { updateAccount("usagepercentage", num) }}
               />
             </Form.Item>
 
             <Form.Item label='Usage'>
-              <Input
+              <InputNumber
                 placeholder="Usage"
-                onChange={(e) => { updateAccount("usage", e.target.value) }}
+                min={0}
+                max={10000}
+                defaultValue={0}
+                onChange={(num) => { updateAccount("usage", num) }}
               />
             </Form.Item>
 
             <Form.Item label='Service'>
               <Input
                 placeholder="Service"
+                allowClear
                 onChange={(e) => { updateAccount("service", e.target.value) }}
               />
             </Form.Item>
 
-            <Form.Item label='Project Code'>
-              <Input
-                placeholder="Project Code"
-                onChange={(e) => { updateAccount("projectCode", e.target.value) }}
-              />
-            </Form.Item>
-
             <Form.Item label='Applied At'>
-              <Input
+              <DatePicker
                 placeholder="Applied At"
-                onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
-              />
-            </Form.Item>
-
-            <Form.Item label='Associate'>
-              <Input
-                placeholder="Associate"
-                onChange={(e) => { updateAccount("associate", e.target.value) }}
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                onChange={(date) => { updateAccount("appliedAt", date) }}
+                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
               />
             </Form.Item>
 
             <Form.Item label='Next Month Bill Date'>
-              <Input
+              <DatePicker
                 placeholder="Next Month Bill Date"
-                onChange={(e) => { updateAccount("nextmonthbill", e.target.value) }}
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
               />
             </Form.Item>
           </Form>
