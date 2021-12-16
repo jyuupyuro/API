@@ -4,7 +4,12 @@ import { Button, Form, Input, Select, DatePicker } from 'antd';
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
 const { Option } = Select;
+
+
 const EditAcc = (props) => {
+
+  const dispatch = useDispatch()
+
 
   useEffect(() => {
     console.log("passed in data", props.location.state)
@@ -85,13 +90,14 @@ const EditAcc = (props) => {
           </Form.Item>
 
           <Form.Item label='Status'>
-              <Select onChange={(value) => { 
-                changeAccount("status", value) }}>
-                <Option value="active">Active</Option>
-                <Option value="inactive">Inactive</Option>
-                <Option value="suspended">Suspended</Option>
-              </Select>
-            </Form.Item>
+            <Select onChange={(value) => {
+              changeAccount("status", value)
+            }}>
+              <Option value="active">Active</Option>
+              <Option value="inactive">Inactive</Option>
+              <Option value="suspended">Suspended</Option>
+            </Select>
+          </Form.Item>
 
           <Form.Item label='Usage Percentage'>
             <Input
@@ -156,7 +162,7 @@ const EditAcc = (props) => {
             />
           </Form.Item>
           <Form.Item>
-            <Button onClick={() => console.log("updating: ", updateAccount)}>
+            <Button onClick={() => dispatch(ACTION.update_account(updateAccount))}>
               Save
             </Button>
           </Form.Item>
