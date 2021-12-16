@@ -42,7 +42,8 @@ class SiderDemo extends React.Component {
             padding: 24,
             margin: 0,
             minHeight: 300,
-            backgroundColor:'#E0FFFF'
+            backgroundColor:'#E0FFFF',
+            backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
 
           }}
         >

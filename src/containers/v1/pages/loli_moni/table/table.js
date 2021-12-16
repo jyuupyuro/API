@@ -167,8 +167,6 @@ const TableOutput = () => {
           return (
             <EditOutlined onClick={() => {
               dispatch(moveToPage("/update", b));
-
-
             }} />
           )
         },
