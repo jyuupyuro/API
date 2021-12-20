@@ -32,25 +32,22 @@ class SiderDemo extends React.Component {
   render() {
     return (
       <Layout>
-        <Header style={{textAlign:'center', fontSize:40, zIndex: 1, width: '100%', color:'white'}}>
+        <Header style={{textAlign:'center', fontSize:35, width: '100%', color:'white'}}>
           <h1 style={{color:'white'}}>LoLi Monitoring</h1>
         </Header>
     <Layout>
-      <Layout style={{ padding: '0 24px 24px' }}>
+      <Layout>
         <Content
           style={{
-            padding: 24,
-            margin: 0,
+            padding: 20,
             minHeight: 300,
-            backgroundColor:'#E0FFFF',
-            backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
-
-          }}
-        >
-          
+            backgroundColor:'#F5FFFA',
+            // backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
+          }}> 
           <ModalShow/>
           <TableShow/>
         </Content>
+        <Footer style={{textAlign:'center'}}>LoLi Monitoring ©2021 Created by Pinetop Intern (UTAR)</Footer>
       </Layout>
     </Layout>
   </Layout>

@@ -166,7 +166,7 @@ const TableOutput = () => {
         render: (a, b, c, d) => {
           return (
             <EditOutlined onClick={() => {
-              dispatch(moveToPage("/update", b));
+              dispatch(moveToPage("/update", b)); 
             }} />
           )
         },
@@ -181,7 +181,13 @@ const TableOutput = () => {
 
     return (
 
-      (<Table style={{ margin: '50px', width: '92%', padding: '0px 5px', marginTop: 100 }} bordered dataSource={dataSource} columns={columns} onChange={onChange} scroll={{ y: 400 }}
+      (<Table style={{ margin: '50px', width: '92%', padding: '0px 5px', marginTop: 100 }} 
+              bordered 
+              dataSource={dataSource} 
+              columns={columns} 
+              onChange={onChange} 
+              scroll={{ y: 400 }}
+
         expandable={{
           expandedRowRender: record => expanded(record),
         }}

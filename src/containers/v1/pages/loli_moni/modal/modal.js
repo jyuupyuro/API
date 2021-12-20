@@ -3,6 +3,9 @@ import { Modal, Button, Form, Input, Select, DatePicker, InputNumber } from 'ant
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
+import moment from 'moment'
+
+
 const { Option } = Select;
 
 const ModalAdd = () => {
@@ -45,7 +48,8 @@ const ModalAdd = () => {
       <Button type="primary" variant="contained"
         style={{
           float: 'right',
-          marginTop: 40
+          marginTop: 40,
+          marginRight: 75
         }}
         color="primary"
         className="float-right"
@@ -156,6 +160,7 @@ const ModalAdd = () => {
 
             <Form.Item label='Applied At'>
               <DatePicker
+              label='Applied At'
                 placeholder="Applied At"
                 showTime
                 allowClear
