@@ -18,9 +18,9 @@ const ModalAdd = () => {
     usage: '',
     service: '',
     projectCode: '',
-    appliedAt: '',
+    appliedAt: 0,
     associate: '',
-    nextmonthbill: '',
+    nextmonthbill: 0,
   })
 
 
@@ -59,7 +59,10 @@ const ModalAdd = () => {
           onCancel={handleCancel}
           onOk={() => console.log(newAccount)}
           footer={[
-            <Button key="save" onClick={() => dispatch(ACTION.add_account(newAccount))}>Save</Button>,
+            <Button key="save" onClick={() => {
+              dispatch(ACTION.add_account(newAccount))
+              console.log("appliedat", newAccount.appliedAt)
+            }}>Save</Button>,
             <Button key="cancel" onClick={handleCancel}>Cancel</Button>
           ]}
         >
@@ -70,7 +73,7 @@ const ModalAdd = () => {
             marginBottom="15px"
           >
             <div>
-              <h1 style={{textAlign:"center", marginBottom:25}}>Create New Account</h1>
+              <h1 style={{ textAlign: "center", marginBottom: 25 }}>Create New Account</h1>
             </div>
             <Form.Item label='Username'>
               <Input
@@ -158,8 +161,15 @@ const ModalAdd = () => {
                 allowClear
                 format="MM-DD-YYYY HH:mm"
                 allowClear
-                onChange={(date) => { updateAccount("appliedAt", date) }}
-                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                //   onChange={(date) => { updateAccount("appliedAt", date)
+                // console.log("aplat",date)
+                onChange={(date, dateString) => {
+                  updateAccount("appliedAt", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
+
+              //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
               />
             </Form.Item>
 
@@ -170,8 +180,12 @@ const ModalAdd = () => {
                 allowClear
                 format="MM-DD-YYYY HH:mm"
                 allowClear
-                onChange={(date) => { updateAccount("nextmonthbill", date) }}
-                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                onChange={(date, dateString) => {
+                  updateAccount("appliedAt", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
               />
             </Form.Item>
           </Form>
