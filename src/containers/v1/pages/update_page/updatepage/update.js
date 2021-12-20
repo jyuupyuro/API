@@ -27,9 +27,10 @@ const EditAcc = (props) => {
     usage: '',
     service: '',
     projectCode: '',
-    appliedAt: '',
+    appliedAt: 0,
     associate: '',
-    nextmonthbill: '',
+    nextmonthbill: 0,
+    lastupdatedAt: 0,
   })
 
   const changeAccount = (key, value) => {
@@ -154,27 +155,59 @@ const EditAcc = (props) => {
             />
           </Form.Item>
 
-          <Form.Item label='Applied At'>
-            <DatePicker
-              placeholder="Applied At"
-              showTime
-              onChange={(dt) => { changeAccount("appliedAt",dt) }}
-              value={updateAccount.appliedAt}
+          <Form.Item label='appliedAt'>
+          <DatePicker
+              label='appliedAt'
+                placeholder="appliedAt"
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                //   onChange={(date) => { updateAccount("appliedAt", date)
+                // console.log("aplat",date)
+                onChange={(date, dateString) => {
+                  changeAccount("appliedAt", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
 
-            />
+              //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+              />
           </Form.Item>
 
           <Form.Item label='Next Month Bill Date'>
-            <DatePicker
-              placeholder="Next Month Bill Date"
-              showTime
-              onChange={(dt) => { changeAccount("nextmonthbill",dt) }}
-              value={updateAccount.nextmonthbill}
-
-            />
+          <DatePicker
+                placeholder="Next Month Bill Date"
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                onChange={(date, dateString) => {
+                  changeAccount("nextmonthbill", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
+              />
           </Form.Item>
+          <Form.Item label='lastupdatedAt'>
+              <DatePicker
+                placeholder="lastupdatedAt"
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                onChange={(date, dateString) => {
+                  changeAccount("lastupdatedAt", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
+              />
+            </Form.Item>
           <Form.Item>
-            <Button onClick={() => dispatch(ACTION.update_account(updateAccount))}>
+            <Button onClick={() => dispatch(ACTION.update_account(updateAccount))
+            }>
               Save
             </Button>
           </Form.Item>

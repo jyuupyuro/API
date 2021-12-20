@@ -24,6 +24,8 @@ const ModalAdd = () => {
     appliedAt: 0,
     associate: '',
     nextmonthbill: 0,
+    lastupdatedAt: 0,
+
   })
 
 
@@ -187,7 +189,22 @@ const ModalAdd = () => {
                 allowClear
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
-                  updateAccount("appliedAt", date.valueOf())
+                  updateAccount("nextmonthbill", date.valueOf())
+                  console.log('Selected Time: ', date.valueOf());
+                  console.log('Formatted Selected Time: ', dateString);
+                }}
+              />
+            </Form.Item>
+            <Form.Item label='lastupdatedAt'>
+              <DatePicker
+                placeholder="lastupdatedAt"
+                showTime
+                allowClear
+                format="MM-DD-YYYY HH:mm"
+                allowClear
+                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                onChange={(date, dateString) => {
+                  updateAccount("lastupdatedAt", date.valueOf())
                   console.log('Selected Time: ', date.valueOf());
                   console.log('Formatted Selected Time: ', dateString);
                 }}
