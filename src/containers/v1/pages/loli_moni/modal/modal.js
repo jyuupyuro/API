@@ -48,7 +48,8 @@ const ModalAdd = () => {
       <Button type="primary" variant="contained"
         style={{
           float: 'right',
-          marginTop: 40
+          marginTop: 40,
+          marginRight: 75
         }}
         color="primary"
         className="float-right"
