@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Table, Select, Typography } from "antd";
-import { EditOutlined } from "@ant-design/icons"
+import { EditOutlined, DeleteFilled  } from "@ant-design/icons"
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
 import { moveToPage } from "../../../service/navigation/services/index"
