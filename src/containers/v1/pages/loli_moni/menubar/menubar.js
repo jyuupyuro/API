@@ -1,7 +1,8 @@
 import React from 'react';
 import CONSTANT from "../constants";
-
-import { Layout, Menu, PageHeader, Breadcrumb } from 'antd';
+import { moveToPage } from "../../../service/navigation/services/index"
+import { useDispatch, useSelector } from "react-redux";
+import { Layout, Menu, Button } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -17,20 +18,13 @@ import ModalShow from '../modal/modal';
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer } = Layout;
+const  Menubar = () => {
+  
 
-class SiderDemo extends React.Component {
-  state = {
-    collapsed: false,
-  };
-
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
-
-  render() {
+  const dispatch = useDispatch()
+  
     return (
+      <div>
       <Layout>
         <Header style={{textAlign:'center', fontSize:35, width: '100%', color:'white'}}>
           <h1 style={{color:'white'}}>LoLi Monitoring</h1>
@@ -38,21 +32,25 @@ class SiderDemo extends React.Component {
     <Layout>
       <Layout>
         <Content
+       
           style={{
             padding: 20,
             minHeight: 300,
             backgroundColor:'#F5FFFA',
             // backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
           }}> 
-          <ModalShow/>
+         <Button onClick={() => {
+              dispatch(moveToPage("/create")); 
+            }}>Create Account</Button>
           <TableShow/>
         </Content>
         <Footer style={{textAlign:'center'}}>LoLi Monitoring ©2021 Created by Pinetop Intern (UTAR)</Footer>
       </Layout>
     </Layout>
   </Layout>
+  </div>
     );
   }
-}
 
-export default SiderDemo;
+
+export default Menubar;

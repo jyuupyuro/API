@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, Select, DatePicker, InputNumber } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import * as ACTION from '../../../service/redux/actions/account'
+import { moveToPage } from "../../../service/navigation/services/index"
+
 import { useDispatch } from 'react-redux';
 const { Option } = Select;
 
@@ -210,6 +212,11 @@ const EditAcc = (props) => {
             }>
               Save
             </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button key="cancel" onClick={() => {
+              dispatch(moveToPage("/back", )); 
+            }}>Cancel</Button>
           </Form.Item>
         </Form>
 
