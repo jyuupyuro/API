@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table, Select } from "antd";
+import { Table, Select, Typography } from "antd";
 import { EditOutlined } from "@ant-design/icons"
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account"
@@ -165,12 +165,17 @@ const TableOutput = () => {
         title: "Action",
         render: (a, b, c, d) => {
           return (
-            <EditOutlined onClick={() => {
-              dispatch(moveToPage("/update", b)); 
-            }} />
+            // <EditOutlined onClick={() => {
+            //   dispatch(moveToPage("/update", b)); 
+            // }} />
+
+            <Typography.Link  onClick={() => {
+              dispatch(moveToPage("/update", b));}}> 
+            Update
+            </Typography.Link>
           )
         },
-        width: '10%',
+        width: '10%'
       },
 
     ];

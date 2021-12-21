@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, Select, DatePicker, InputNumber } from 'antd';
+import { Layout, Button, Form, Input, Select, DatePicker, InputNumber } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import * as ACTION from '../../../service/redux/actions/account'
 import { useDispatch } from 'react-redux';
 const { Option } = Select;
 
+const { Header, Content, Footer } = Layout;
 
 const EditAcc = (props) => {
 
@@ -49,22 +50,23 @@ const EditAcc = (props) => {
     setIsModalVisible(false);
   };
 
-  const [startTime, setStartTime] = useState(0);
-  const [endTime, setEndTime] = useState(0);
 
 
   return (
-    <div>
-      <div>
-
+    <Layout>
+      <Header style={{textAlign:'center', fontSize:35, width: '100%', color:'white'}}>
+          <h1 style={{color:'white'}}>LoLi Monitoring</h1>
+        </Header>
+    <Layout>
+      <Content>
         <Form
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 13 }}
+          labelCol={{ span: 9 }}
+          wrapperCol={{ span: 7 }}
           layout="horizontol"
           marginBottom="15px"
         >
           <div>
-            <h1 style={{textAlign:"center", fontSize:50}}>Update Account</h1>
+            <h1 style={{textAlign:"center", fontSize:30, marginTop:25, marginBottom:25}}>Update Account</h1>
           </div>
           <Form.Item label='Username'>
             <Input
@@ -206,17 +208,23 @@ const EditAcc = (props) => {
               />
             </Form.Item>
           <Form.Item>
-            <Button onClick={() => dispatch(ACTION.update_account(updateAccount))
+            <Button style={{position:'absolute',  right: -565}} onClick={() => dispatch(ACTION.update_account(updateAccount))
             }>
               Save
             </Button>
           </Form.Item>
         </Form>
+        <Layout>
+        <Footer style={{textAlign:'center'}}>LoLi Monitoring ©2021 Created by Pinetop Intern (UTAR)</Footer>
+        </Layout>
+        </Content>
+      </Layout>
+    </Layout>
 
-      </div>
-    </div>
+
   );
 
 }
 
 export default EditAcc;
+
