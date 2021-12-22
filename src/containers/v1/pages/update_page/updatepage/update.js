@@ -1,46 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Button, Form, Input, Select, DatePicker, InputNumber } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import * as ACTION from '../../../service/redux/actions/account'
-import { moveToPage } from "../../../service/navigation/services/index"
+import React, { useEffect, useState } from "react";
+import {
+  Layout,
+  Button,
+  Form,
+  Card,
+  Input,
+  Select,
+  DatePicker,
+  InputNumber,
+  Tooltip,
+  Menu,
+} from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  HomeOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
+import * as ACTION from "../../../service/redux/actions/account";
+import { moveToPage } from "../../../service/navigation/services/index";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 const { Option } = Select;
 
 const { Header, Content, Footer } = Layout;
 
 const EditAcc = (props) => {
-
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("passed in data", props.location.state)
-    const account = props.location.state
+    console.log("passed in data", props.location.state);
+    const account = props.location.state;
 
-    setUpdateAccount(account)
-  }, [])
+    setUpdateAccount(account);
+  }, []);
 
   const [updateAccount, setUpdateAccount] = useState({
-    username: '',
-    password: '',
-    apiKey: '',
-    status: '',
-    usagepercentage: '',
-    usage: '',
-    service: '',
-    projectCode: '',
+    username: "",
+    password: "",
+    apiKey: "",
+    status: "",
+    usagepercentage: "",
+    usage: "",
+    service: "",
+    projectCode: "",
     appliedAt: 0,
-    associate: '',
+    associate: "",
     nextmonthbill: 0,
     lastupdatedAt: 0,
-  })
+  });
 
   const changeAccount = (key, value) => {
-    let tempAccount = JSON.parse(JSON.stringify(updateAccount))
-    tempAccount[key] = value
-    setUpdateAccount(tempAccount)
-  }
+    let tempAccount = JSON.parse(JSON.stringify(updateAccount));
+    tempAccount[key] = value;
+    setUpdateAccount(tempAccount);
+  };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -52,116 +66,164 @@ const EditAcc = (props) => {
     setIsModalVisible(false);
   };
 
-
-
   return (
-    <Layout>
-      <Header style={{textAlign:'center', fontSize:35, width: '100%', color:'white'}}>
-          <h1 style={{color:'white'}}>LoLi Monitoring</h1>
-        </Header>
-    <Layout>
-      <Content>
+    <div>
+      <div style={{ textAlign: "center", fontSize: 35, width: "100%" }}>
+        <strong>LoLi Monitoring</strong>
+      </div>
+      <Header style={{ width: "100%", color: "white" }}>
+        <div />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+          <Menu.Item
+            key="1"
+            icon={<HomeOutlined />}
+            onClick={() => {
+              dispatch(moveToPage("/home"));
+            }}
+          >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            icon={<UserAddOutlined />}
+            onClick={() => {
+              dispatch(moveToPage("/create"));
+            }}
+          >
+            Create New Account
+          </Menu.Item>
+        </Menu>
+      </Header>
+      <Content
+        style={{
+          padding: 20,
+          backgroundColor: "#F5F5F5",
+
+          // backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
+        }}
+      >
         <Form
-          labelCol={{ span: 9 }}
-          wrapperCol={{ span: 7 }}
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 13 }}
           layout="horizontol"
           marginBottom="15px"
         >
-          <div>
-            <h1 style={{textAlign:"center", fontSize:30, marginTop:25, marginBottom:25}}>Update Account</h1>
-          </div>
-          <Form.Item label='Username'>
-            <Input
-              placeholder="Username"
-              onChange={(e) => { changeAccount("username", e.target.value) }}
-              value={updateAccount.username}
-            />
+          <Card style={{ margin: 30 }}>
+            <div>
+              <h1
+                style={{
+                  textAlign: "center",
+                  fontSize: 30,
+                  marginTop: 25,
+                  marginBottom: 25,
+                }}
+              >
+                Update Account
+              </h1>
+            </div>
+            <Form.Item label="Username">
+              <Input
+                placeholder="Username"
+                onChange={(e) => {
+                  changeAccount("username", e.target.value);
+                }}
+                value={updateAccount.username}
+              />
+            </Form.Item>
+            <Form.Item label="Password">
+              <Input.Password
+                placeholder="Password"
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+                onChange={(e) => {
+                  changeAccount("password", e.target.value);
+                }}
+                value={updateAccount.password}
+              />
+            </Form.Item>
 
-          </Form.Item>
-          <Form.Item label='Password'>
-            <Input.Password
-              placeholder="Password"
-              iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-              onChange={(e) => { changeAccount("password", e.target.value) }}
-              value={updateAccount.password}
+            <Form.Item label="API key">
+              <Input
+                placeholder="API Key"
+                onChange={(e) => {
+                  changeAccount("apiKey", e.target.value);
+                }}
+                value={updateAccount.apiKey}
+              />
+            </Form.Item>
 
-            />
-          </Form.Item>
+            <Form.Item label="Associate">
+              <Input
+                placeholder="Associate"
+                onChange={(e) => {
+                  changeAccount("associate", e.target.value);
+                }}
+                value={updateAccount.associate}
+              />
+            </Form.Item>
 
-          <Form.Item label='API key'>
-            <Input
-              placeholder="API Key"
-              onChange={(e) => { changeAccount("apiKey", e.target.value) }}
-              value={updateAccount.apiKey}
+            <Form.Item label="Status">
+              <Select
+                onChange={(value) => {
+                  changeAccount("status", value);
+                }}
+              >
+                <Option value="active">Active</Option>
+                <Option value="inactive">Inactive</Option>
+                <Option value="suspended">Suspended</Option>
+              </Select>
+            </Form.Item>
 
-            />
-          </Form.Item>
+            <Form.Item label="Project Code">
+              <Input
+                placeholder="Project Code"
+                onChange={(e) => {
+                  changeAccount("projectCode", e.target.value);
+                }}
+                value={updateAccount.projectCode}
+              />
+            </Form.Item>
 
-          <Form.Item label='Associate'>
-            <Input
-              placeholder="Associate"
-              onChange={(e) => { changeAccount("associate", e.target.value) }}
-              value={updateAccount.associate}
+            <Form.Item label="Usage Percentage">
+              <InputNumber
+                placeholder="Usage Percentage"
+                min={0}
+                max={10000}
+                defaultValue={0}
+                onChange={(e) => {
+                  changeAccount("usagepercentage", e.target.value);
+                }}
+                value={updateAccount.usagepercentage}
+              />
+            </Form.Item>
 
-            />
-          </Form.Item>
+            <Form.Item label="Usage">
+              <InputNumber
+                placeholder="Usage"
+                min={0}
+                max={10000}
+                defaultValue={0}
+                onChange={(e) => {
+                  changeAccount("usage", e.target.value);
+                }}
+                value={updateAccount.usage}
+              />
+            </Form.Item>
 
-          <Form.Item label='Status'>
-            <Select onChange={(value) => {
-              changeAccount("status", value)
-            }}>
-              <Option value="active">Active</Option>
-              <Option value="inactive">Inactive</Option>
-              <Option value="suspended">Suspended</Option>
-            </Select>
-          </Form.Item>
+            <Form.Item label="Service">
+              <Input
+                placeholder="Service"
+                onChange={(e) => {
+                  changeAccount("service", e.target.value);
+                }}
+                value={updateAccount.service}
+              />
+            </Form.Item>
 
-            
-          <Form.Item label='Project Code'>
-            <Input
-              placeholder="Project Code"
-              onChange={(e) => { changeAccount("projectCode", e.target.value) }}
-              value={updateAccount.projectCode}
-
-            />
-          </Form.Item>
-
-          <Form.Item label='Usage Percentage'>
-            <InputNumber
-              placeholder="Usage Percentage"
-              min={0}
-              max={10000}
-              defaultValue={0}
-              onChange={(e) => { changeAccount("usagepercentage", e.target.value) }}
-              value={updateAccount.usagepercentage}
-
-            />
-          </Form.Item>
-
-          <Form.Item label='Usage'>
-            <InputNumber
-              placeholder="Usage"
-              min={0}
-              max={10000}
-              defaultValue={0}
-              onChange={(e) => { changeAccount("usage", e.target.value) }}
-              value={updateAccount.usage}
-
-            />
-          </Form.Item>
-
-          <Form.Item label='Service'>
-            <Input
-              placeholder="Service"
-              onChange={(e) => { changeAccount("service", e.target.value) }}
-              value={updateAccount.service}
-
-            />
-          </Form.Item>
-
-          <Form.Item label='appliedAt'>
-          <DatePicker
-              label='appliedAt'
+            <Form.Item label="appliedAt">
+              <DatePicker
+                label="appliedAt"
                 placeholder="appliedAt"
                 showTime
                 allowClear
@@ -170,17 +232,17 @@ const EditAcc = (props) => {
                 //   onChange={(date) => { updateAccount("appliedAt", date)
                 // console.log("aplat",date)
                 onChange={(date, dateString) => {
-                  changeAccount("appliedAt", date.valueOf())
-                  console.log('Selected Time: ', date.valueOf());
-                  console.log('Formatted Selected Time: ', dateString);
+                  changeAccount("appliedAt", date.valueOf());
+                  console.log("Selected Time: ", date.valueOf());
+                  console.log("Formatted Selected Time: ", dateString);
                 }}
 
-              //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
               />
-          </Form.Item>
+            </Form.Item>
 
-          <Form.Item label='Next Month Bill Date'>
-          <DatePicker
+            <Form.Item label="Next Month Bill Date">
+              <DatePicker
                 placeholder="Next Month Bill Date"
                 showTime
                 allowClear
@@ -188,13 +250,13 @@ const EditAcc = (props) => {
                 allowClear
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
-                  changeAccount("nextmonthbill", date.valueOf())
-                  console.log('Selected Time: ', date.valueOf());
-                  console.log('Formatted Selected Time: ', dateString);
+                  changeAccount("nextmonthbill", date.valueOf());
+                  console.log("Selected Time: ", date.valueOf());
+                  console.log("Formatted Selected Time: ", dateString);
                 }}
               />
-          </Form.Item>
-          <Form.Item label='lastupdatedAt'>
+            </Form.Item>
+            <Form.Item label="lastupdatedAt">
               <DatePicker
                 placeholder="lastupdatedAt"
                 showTime
@@ -203,35 +265,70 @@ const EditAcc = (props) => {
                 allowClear
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
-                  changeAccount("lastupdatedAt", date.valueOf())
-                  console.log('Selected Time: ', date.valueOf());
-                  console.log('Formatted Selected Time: ', dateString);
+                  changeAccount("lastupdatedAt", date.valueOf());
+                  console.log("Selected Time: ", date.valueOf());
+                  console.log("Formatted Selected Time: ", dateString);
                 }}
               />
             </Form.Item>
-          <Form.Item>
-            <Button style={{position:'absolute',  right: -565}} onClick={() => dispatch(ACTION.update_account(updateAccount))
-            }>
-              Save
-            </Button>
-          </Form.Item>
-          <Form.Item>
-            <Button key="cancel" onClick={() => {
-              dispatch(moveToPage("/back", )); 
-            }}>Cancel</Button>
-          </Form.Item>
+            {/* <Form.Item>
+                <Button
+                  style={{ display: "flex", justifyContent: "flex-end" }}
+                  onClick={() => dispatch(ACTION.update_account(updateAccount))}
+                >
+                  Save
+                </Button>
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  key="cancel"
+                  onClick={() => {
+                    dispatch(moveToPage("/home"));
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Form.Item> */}
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginRight: 15,
+                marginBottom: 15,
+              }}
+            >
+              <Button
+                key="save"
+                style={{ marginRight: 15 }}
+                onClick={() => dispatch(ACTION.update_account(updateAccount))}
+              >
+                Save
+              </Button>
+              <Button
+                key="cancel"
+                style={{ marginRight: 285 }}
+                onClick={() => {
+                  dispatch(moveToPage("/home"));
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+          </Card>
         </Form>
-        <Layout>
-        <Footer style={{textAlign:'center'}}>LoLi Monitoring ©2021 Created by Pinetop Intern (UTAR)</Footer>
-        </Layout>
-        </Content>
-      </Layout>
-    </Layout>
-
-
+      </Content>
+      <Footer
+        style={{
+          textAlign: "center",
+          width: "100%",
+          backgroundColor: "#DCDCDC",
+        }}
+      >
+        Ant Design ©2018 Created by Ant UED
+      </Footer>
+    </div>
   );
-
-}
+};
 
 export default EditAcc;
-

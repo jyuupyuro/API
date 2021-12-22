@@ -2,6 +2,7 @@ import * as API from "../../api/resources/account"
 import * as ActionType from "../action-types";
 
 import { message } from 'antd'
+import { goBackToPrev } from "../../navigation/services";
 
 export const get_account_success = (accounts) => {
     return {
@@ -61,6 +62,7 @@ export const add_account = (account) => dispatch => {
       }
       else {
           dispatch(get_account_success2(data.account));
+          dispatch(goBackToPrev());
       }
   })
   .catch(err => {
@@ -83,7 +85,8 @@ export const update_account = (account) => dispatch => {
       }
       else {
           dispatch(update_account_success(data.account));
-          console.log("updated acc:",data.account)
+          console.log("updated acc:",data.account);
+          dispatch(goBackToPrev());
           
       }
   })

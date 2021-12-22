@@ -39,7 +39,7 @@ const Routes = props => {
       />
       <Route
         exact
-        path={"/back"}
+        path={"/home"}
         render={(renderProps) => {
           return <Back {...props} {...renderProps} />
         }}
