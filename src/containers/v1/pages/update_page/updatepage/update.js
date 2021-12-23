@@ -19,8 +19,10 @@ import {
 } from "@ant-design/icons";
 import * as ACTION from "../../../service/redux/actions/account";
 import { moveToPage } from "../../../service/navigation/services/index";
-
 import { useDispatch } from "react-redux";
+
+import moment from "moment";
+
 const { Option } = Select;
 
 const { Header, Content, Footer } = Layout;
@@ -56,15 +58,6 @@ const EditAcc = (props) => {
     setUpdateAccount(tempAccount);
   };
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
   return (
     <div>
@@ -168,6 +161,7 @@ const EditAcc = (props) => {
                 onChange={(value) => {
                   changeAccount("status", value);
                 }}
+                value={updateAccount.status}
               >
                 <Option value="active">Active</Option>
                 <Option value="inactive">Inactive</Option>
@@ -205,7 +199,7 @@ const EditAcc = (props) => {
                 max={250000}
                 defaultValue={0}
                 onChange={(value) => {
-                  changeAccount("usage",value);
+                  changeAccount("usage", value);
                 }}
                 value={updateAccount.usage}
               />
@@ -229,15 +223,12 @@ const EditAcc = (props) => {
                 allowClear
                 format="MM-DD-YYYY HH:mm"
                 allowClear
-                //   onChange={(date) => { updateAccount("appliedAt", date)
-                // console.log("aplat",date)
                 onChange={(date, dateString) => {
                   changeAccount("appliedAt", date.valueOf());
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
-
-                //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
+                  value={moment()}
               />
             </Form.Item>
 
@@ -254,6 +245,7 @@ const EditAcc = (props) => {
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
+                value={moment()}
               />
             </Form.Item>
             <Form.Item label="lastupdatedAt">
@@ -269,6 +261,7 @@ const EditAcc = (props) => {
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
+                value={moment()}
               />
             </Form.Item>
             {/* <Form.Item>
