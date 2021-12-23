@@ -58,7 +58,6 @@ const EditAcc = (props) => {
     setUpdateAccount(tempAccount);
   };
 
-
   return (
     <div>
       <div style={{ textAlign: "center", fontSize: 35, width: "100%" }}>
@@ -146,9 +145,9 @@ const EditAcc = (props) => {
               />
             </Form.Item>
 
-            <Form.Item label="Associate">
+            <Form.Item label="Account Name">
               <Input
-                placeholder="Associate"
+                placeholder="Account Name"
                 onChange={(e) => {
                   changeAccount("associate", e.target.value);
                 }}
@@ -215,45 +214,27 @@ const EditAcc = (props) => {
               />
             </Form.Item>
 
-            <Form.Item label="appliedAt">
+            <Form.Item label="Applied At">
               <DatePicker
-                label="appliedAt"
-                placeholder="appliedAt"
+                placeholder="Applied At"
                 showTime
                 allowClear
-                format="MM-DD-YYYY HH:mm"
+                format="DD-MM-YYYY HH:mm"
                 allowClear
                 onChange={(date, dateString) => {
                   changeAccount("appliedAt", date.valueOf());
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
-                  value={moment()}
+                // value={moment()}
               />
             </Form.Item>
-
-            <Form.Item label="Next Month Bill Date">
+            <Form.Item label="Last Updated At">
               <DatePicker
-                placeholder="Next Month Bill Date"
+                placeholder="Last Updated At"
                 showTime
                 allowClear
-                format="MM-DD-YYYY HH:mm"
-                allowClear
-                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
-                onChange={(date, dateString) => {
-                  changeAccount("nextmonthbill", date.valueOf());
-                  console.log("Selected Time: ", date.valueOf());
-                  console.log("Formatted Selected Time: ", dateString);
-                }}
-                value={moment()}
-              />
-            </Form.Item>
-            <Form.Item label="lastupdatedAt">
-              <DatePicker
-                placeholder="lastupdatedAt"
-                showTime
-                allowClear
-                format="MM-DD-YYYY HH:mm"
+                format="DD-MM-YYYY HH:mm"
                 allowClear
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
@@ -261,7 +242,23 @@ const EditAcc = (props) => {
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
-                value={moment()}
+                // value={moment()}
+              />
+            </Form.Item>
+            <Form.Item label="Next Month Bill Date">
+              <DatePicker
+                placeholder="Next Month Bill Date"
+                showTime
+                allowClear
+                format="DD-MM-YYYY HH:mm"
+                allowClear
+                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
+                onChange={(date, dateString) => {
+                  changeAccount("nextmonthbill", date.valueOf());
+                  console.log("Selected Time: ", date.valueOf());
+                  console.log("Formatted Selected Time: ", dateString);
+                }}
+                // value={moment()}
               />
             </Form.Item>
             {/* <Form.Item>
@@ -318,7 +315,7 @@ const EditAcc = (props) => {
           backgroundColor: "#DCDCDC",
         }}
       >
-        Ant Design ©2018 Created by Ant UED
+        LoLi Monitoring Project ©2021 Created by UTAR Interns
       </Footer>
     </div>
   );

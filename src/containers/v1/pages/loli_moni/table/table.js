@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table, Select, Typography, Tooltip, Checkbox } from "antd";
-import { EditOutlined, DeleteFilled } from "@ant-design/icons";
+import { Table, Tooltip} from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account";
 import { moveToPage } from "../../../service/navigation/services/index";
 import moment from "moment";
-import CheckableTag from "antd/lib/tag/CheckableTag";
 
 const TableOutput = () => {
   const [dataSource, setdatasource] = useState([]);
@@ -36,9 +35,9 @@ const TableOutput = () => {
             key: account.accountID,
             ...account,
 
-            appliedAt: moment(account.appliedAt).format("L, hh.mm a"),
-            lastupdatedAt: moment(account.lastupdatedAt).format("L, hh.mm a"),
-            nextmonthbill: moment(account.nextmonthbill).format("L, hh.mm a"),
+            appliedAt: moment(account.appliedAt).format("DD-MM-YYYY HH:mm"),
+            lastupdatedAt: moment(account.lastupdatedAt).format("DD-MM-YYYY HH:mm"),
+            nextmonthbill: moment(account.nextmonthbill).format("DD-MM-YYYY HH:mm"),
           };
         })
       );
@@ -69,7 +68,7 @@ const TableOutput = () => {
 
     const columns = [
       {
-        title: "Associate",
+        title: "Account Name",
         dataIndex: "associate",
         key: "associate",
         width: "15%",
@@ -114,22 +113,6 @@ const TableOutput = () => {
         width: "15%",
         sorter: (a, b) => a.usagepercentage - b.usagepercentage,
         filters: [
-          // {
-          //   text: "0-25%",
-          //   value: [0, 25],
-          // },
-          // {
-          //   text: "25-50%",
-          //   value: [25, 50],
-          // },
-          // {
-          //   text: "50-75%",
-          //   value: [50, 75],
-          // },
-          // {
-          //   text: "75-100%",
-          //   value: [75, 100],
-          // },
           {
             text: "0-70%",
             value: [0, 70],
@@ -220,6 +203,10 @@ const TableOutput = () => {
           width: "92%",
           padding: "0px 5px",
           marginTop: 60,
+          // borderWidth:"1px", 
+          // borderColor:"black", 
+          // borderStyle:'solid',
+          // backgroundColor:"white"
         }}
         bordered
         dataSource={dataSource}
