@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table, Select, Typography, Tooltip } from "antd";
+import { Table, Select, Typography, Tooltip, Checkbox } from "antd";
 import { EditOutlined, DeleteFilled } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { get_accounts } from "../../../service/redux/actions/account";
 import { moveToPage } from "../../../service/navigation/services/index";
 import moment from "moment";
+import CheckableTag from "antd/lib/tag/CheckableTag";
 
 const TableOutput = () => {
   const [dataSource, setdatasource] = useState([]);
@@ -113,32 +114,64 @@ const TableOutput = () => {
         width: "15%",
         sorter: (a, b) => a.usagepercentage - b.usagepercentage,
         filters: [
+          // {
+          //   text: "0-25%",
+          //   value: [0, 25],
+          // },
+          // {
+          //   text: "25-50%",
+          //   value: [25, 50],
+          // },
+          // {
+          //   text: "50-75%",
+          //   value: [50, 75],
+          // },
+          // {
+          //   text: "75-100%",
+          //   value: [75, 100],
+          // },
           {
-            text: "0-25%",
-            value: [0, 25],
+            text: "0-70%",
+            value: [0, 70],
           },
           {
-            text: "25-50%",
-            value: [25, 50],
+            text: "71-80%",
+            value: [71, 80],
           },
           {
-            text: "50-75%",
-            value: [50, 75],
+            text: "81-100%",
+            value: [81, 100],
           },
           {
-            text: "75-100%",
-            value: [75, 100],
+            text: "100% >",
+            value: [101, 1000],
           },
         ],
         onFilter: (value, record) =>
           record.usagepercentage >= value[0] &&
           record.usagepercentage <= value[1],
+
+          render:(data) => {
+            if(data <= 70){
+              return <strong style={{color:"#008000"}}>{data}</strong>
+            }
+            else if(data >= 71 && data <= 80){
+              return <strong style={{color:"#FFD700"}}>{data}</strong>
+            }
+            else if(data >= 81 && data <= 100){
+              return <strong style={{color:"#FF0000"}}>{data}</strong>
+            }
+            else if(data >= 101 ){
+              return <strong style={{color:"#800000"}}>{data}</strong>
+            }
+          }
       },
       {
         title: "Usage",
         dataIndex: "usage",
         key: "usage",
         width: "10%",
+        sorter: (a, b) => a.usage - b.usage
       },
       {
         title: "Applied At",
@@ -164,7 +197,7 @@ const TableOutput = () => {
           return (
             <Tooltip placement="top" title={"Update"}>
               <EditOutlined
-              style={{fontSize:20}}
+                style={{ fontSize: 20 }}
                 onClick={() => {
                   dispatch(moveToPage("/update", b));
                 }}

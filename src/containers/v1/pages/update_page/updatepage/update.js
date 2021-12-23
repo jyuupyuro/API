@@ -189,10 +189,10 @@ const EditAcc = (props) => {
               <InputNumber
                 placeholder="Usage Percentage"
                 min={0}
-                max={10000}
+                max={1000}
                 defaultValue={0}
-                onChange={(e) => {
-                  changeAccount("usagepercentage", e.target.value);
+                onChange={(value) => {
+                  changeAccount("usagepercentage", value);
                 }}
                 value={updateAccount.usagepercentage}
               />
@@ -202,10 +202,10 @@ const EditAcc = (props) => {
               <InputNumber
                 placeholder="Usage"
                 min={0}
-                max={10000}
+                max={250000}
                 defaultValue={0}
-                onChange={(e) => {
-                  changeAccount("usage", e.target.value);
+                onChange={(value) => {
+                  changeAccount("usage",value);
                 }}
                 value={updateAccount.usage}
               />

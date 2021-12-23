@@ -8,8 +8,7 @@ import {
   InputNumber,
   Menu,
   Layout,
-  Card,
-  Tooltip
+  Card
 } from "antd";
 import {
   EyeInvisibleOutlined,
@@ -48,15 +47,6 @@ const ModalAdd = () => {
     setNewAccount(tempAccount);
   };
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
   return (
     <div>
@@ -183,10 +173,10 @@ const ModalAdd = () => {
               <InputNumber
                 placeholder="Usage Percentage"
                 min={0}
-                max={100}
+                max={1000}
                 defaultValue={0}
-                onChange={(num) => {
-                  updateAccount("usagepercentage", num);
+                onChange={(value) => {
+                  updateAccount("usagepercentage", value);
                 }}
               />
             </Form.Item>
@@ -195,10 +185,10 @@ const ModalAdd = () => {
               <InputNumber
                 placeholder="Usage"
                 min={0}
-                max={10000}
+                max={250000}
                 defaultValue={0}
-                onChange={(num) => {
-                  updateAccount("usage", num);
+                onChange={(value) => {
+                  updateAccount("usage", value);
                 }}
               />
             </Form.Item>
