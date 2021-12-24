@@ -265,7 +265,7 @@ const ModalAdd = () => {
                     style={{ marginRight: 15 }}
                     onClick={() => {
                       dispatch(ACTION.add_account(newAccount));
-                      console.log("appliedat", newAccount.appliedAt);
+                      console.log("appliedAt", newAccount.appliedAt);
                     }}
                   >
                     Save

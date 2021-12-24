@@ -72,12 +72,13 @@ const TableOutput = () => {
         dataIndex: "associate",
         key: "associate",
         width: "15%",
+        sorter: (a, b) => a.associate.localeCompare(b.associate)
       },
       {
         title: "Service",
         dataIndex: "service",
         key: "service",
-        width: "15%",
+        width: "10%",
       },
       {
         title: "Status",
@@ -110,7 +111,7 @@ const TableOutput = () => {
         title: "Usage Percentage",
         dataIndex: "usagepercentage",
         key: "usagepercentage",
-        width: "15%",
+        width: "10%",
         sorter: (a, b) => a.usagepercentage - b.usagepercentage,
         filters: [
           {
@@ -161,18 +162,21 @@ const TableOutput = () => {
         dataIndex: "appliedAt",
         key: "appliedAt",
         width: "10%",
+        sorter: (a, b) => a.appliedAt.localeCompare(b.appliedAt)
       },
       {
         title: "Last Updated At",
         dataIndex: "lastupdatedAt",
         key: "lastupdatedAt",
         width: "10%",
+        sorter: (a, b) => a.lastupdatedAt.localeCompare(b.lastupdatedAt)
       },
       {
         title: "Next Month Bill Date",
         dataIndex: "nextmonthbill",
         key: "nextmonthbill",
         width: "10%",
+        sorter: (a, b) => a.nextmonthbill.localeCompare(b.nextmonthbill)
       },
       {
         title: "Action",
@@ -199,14 +203,10 @@ const TableOutput = () => {
     return (
       <Table
         style={{
-          margin: "50px",
-          width: "92%",
+          margin: "30px",
+          width: "95%",
           padding: "0px 5px",
-          marginTop: 60,
-          // borderWidth:"1px", 
-          // borderColor:"black", 
-          // borderStyle:'solid',
-          // backgroundColor:"white"
+          marginTop: 40,
         }}
         bordered
         dataSource={dataSource}

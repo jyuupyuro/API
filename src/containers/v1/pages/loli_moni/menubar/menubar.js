@@ -41,18 +41,18 @@ const MenuBar = () => {
       </Header>
       <Content
         style={{
-          padding: 20,
+          padding:30,
           backgroundColor: "#F5F5F5",
 
           // backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
         }}
       >
-        <Card style={{margin:30, backgroundColor:"#F8F8FF"}}>
+        <Card style={{margin:20, backgroundColor:"#000000"}}>
         <TableShow />
         </Card>
       </Content>
 
-      <Footer style={{ textAlign: "center", backgroundColor: "#DCDCDC", marginTop:5 }}>
+      <Footer style={{ textAlign: "center", backgroundColor: "#DCDCDC"}}>
         LoLi Monitoring Project ©2021 Created by UTAR Interns
       </Footer>
     </div>
