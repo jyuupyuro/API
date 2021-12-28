@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Layout,
   Button,
@@ -8,7 +8,6 @@ import {
   Select,
   DatePicker,
   InputNumber,
-  Tooltip,
   Menu,
 } from "antd";
 import {
@@ -18,8 +17,9 @@ import {
   UserAddOutlined,
 } from "@ant-design/icons";
 import * as ACTION from "../../../service/redux/actions/account";
+import { get_accounts } from "../../../service/redux/actions/account";
 import { moveToPage } from "../../../service/navigation/services/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import moment from "moment";
 
@@ -28,14 +28,47 @@ const { Option } = Select;
 const { Header, Content, Footer } = Layout;
 
 const EditAcc = (props) => {
+  const accounts = useSelector((state) => state.containers.v1.account);
+  console.log("bruh", accounts.byAccountId)
+
+  const accountID = props.location.state;
+  const acc = accounts.byAccountId[accountID]
+
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     console.log("passed in data", props.location.state);
-    const account = props.location.state;
-
-    setUpdateAccount(account);
+    dispatch(get_accounts());
+    console.log("this is acc", acc)
+    setUpdateAccount(acc);
   }, []);
+
+  const usePrevious = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+
+  const prevAccounts = usePrevious(accounts);
+
+  useEffect(() => {
+    if (JSON.stringify(prevAccounts) !== JSON.stringify(accounts)) {
+      const accountID = props.location.state;
+      console.log("[didUpdate] accountID: ", accountID);
+
+      // dispatch(get_accounts());
+      console.log("[didUpdate] accounts store: ", accounts);
+
+      const account = accounts && accounts.byAccountId[accountID]
+      console.log("[didUpdate] account: ", account);
+
+      setUpdateAccount(account);
+    }
+  }, []);
+
 
   const [updateAccount, setUpdateAccount] = useState({
     username: "",
@@ -113,13 +146,13 @@ const EditAcc = (props) => {
                 Update Account
               </h1>
             </div>
-            <Form.Item label="Username">
+            <Form.Item label="Email">
               <Input
-                placeholder="Username"
+                placeholder="Enter an Email"
                 onChange={(e) => {
                   changeAccount("username", e.target.value);
                 }}
-                value={updateAccount.username}
+                value={updateAccount && updateAccount.username}
               />
             </Form.Item>
             <Form.Item label="Password">
@@ -131,7 +164,7 @@ const EditAcc = (props) => {
                 onChange={(e) => {
                   changeAccount("password", e.target.value);
                 }}
-                value={updateAccount.password}
+                value={updateAccount && updateAccount.password}
               />
             </Form.Item>
 
@@ -141,7 +174,7 @@ const EditAcc = (props) => {
                 onChange={(e) => {
                   changeAccount("apiKey", e.target.value);
                 }}
-                value={updateAccount.apiKey}
+                value={updateAccount && updateAccount.apiKey}
               />
             </Form.Item>
 
@@ -151,7 +184,7 @@ const EditAcc = (props) => {
                 onChange={(e) => {
                   changeAccount("associate", e.target.value);
                 }}
-                value={updateAccount.associate}
+                value={updateAccount && updateAccount.associate}
               />
             </Form.Item>
 
@@ -160,7 +193,7 @@ const EditAcc = (props) => {
                 onChange={(value) => {
                   changeAccount("status", value);
                 }}
-                value={updateAccount.status}
+                value={updateAccount && updateAccount.status}
               >
                 <Option value="active">Active</Option>
                 <Option value="inactive">Inactive</Option>
@@ -174,7 +207,7 @@ const EditAcc = (props) => {
                 onChange={(e) => {
                   changeAccount("projectCode", e.target.value);
                 }}
-                value={updateAccount.projectCode}
+                value={updateAccount && updateAccount.projectCode}
               />
             </Form.Item>
 
@@ -187,7 +220,7 @@ const EditAcc = (props) => {
                 onChange={(value) => {
                   changeAccount("usagepercentage", value);
                 }}
-                value={updateAccount.usagepercentage}
+                value={updateAccount && updateAccount.usagepercentage}
               />
             </Form.Item>
 
@@ -200,7 +233,7 @@ const EditAcc = (props) => {
                 onChange={(value) => {
                   changeAccount("usage", value);
                 }}
-                value={updateAccount.usage}
+                value={updateAccount && updateAccount.usage}
               />
             </Form.Item>
 
@@ -210,7 +243,7 @@ const EditAcc = (props) => {
                 onChange={(e) => {
                   changeAccount("service", e.target.value);
                 }}
-                value={updateAccount.service}
+                value={updateAccount && updateAccount.service}
               />
             </Form.Item>
 
@@ -218,67 +251,46 @@ const EditAcc = (props) => {
               <DatePicker
                 placeholder="Applied At"
                 showTime
-                allowClear
+                allowClear = {false}
                 format="DD-MM-YYYY HH:mm"
-                allowClear
                 onChange={(date, dateString) => {
                   changeAccount("appliedAt", date.valueOf());
                   console.log("Selected Time: ", date.valueOf());
-                  console.log("Formatted Selected Time: ", dateString);
+                  // console.log("Formatted Selected Time: ", dateString);
                 }}
-                
+                value={moment(updateAccount && updateAccount.appliedAt)}
+
               />
             </Form.Item>
             <Form.Item label="Last Updated At">
               <DatePicker
                 placeholder="Last Updated At"
                 showTime
-                allowClear
+                allowClear = {false}
                 format="DD-MM-YYYY HH:mm"
-                allowClear
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
                   changeAccount("lastupdatedAt", date.valueOf());
                   console.log("Selected Time: ", date.valueOf());
-                  console.log("Formatted Selected Time: ", dateString);
+                  // console.log("Formatted Selected Time: ", dateString);
                 }}
-                // value={moment()}
+                value={moment(updateAccount && updateAccount.lastupdatedAt)}
               />
             </Form.Item>
             <Form.Item label="Next Month Bill Date">
               <DatePicker
                 placeholder="Next Month Bill Date"
                 showTime
-                allowClear
+                allowClear = {false}
                 format="DD-MM-YYYY HH:mm"
-                allowClear
-                // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
                   changeAccount("nextmonthbill", date.valueOf());
                   console.log("Selected Time: ", date.valueOf());
-                  console.log("Formatted Selected Time: ", dateString);
+                  // console.log("Formatted Selected Time: ", dateString);
                 }}
-                // value={moment()}
+                value={moment(updateAccount && updateAccount.nextmonthbill)}
               />
             </Form.Item>
-            {/* <Form.Item>
-                <Button
-                  style={{ display: "flex", justifyContent: "flex-end" }}
-                  onClick={() => dispatch(ACTION.update_account(updateAccount))}
-                >
-                  Save
-                </Button>
-              </Form.Item>
-              <Form.Item>
-                <Button
-                  key="cancel"
-                  onClick={() => {
-                    dispatch(moveToPage("/home"));
-                  }}
-                >
-                  Cancel
-                </Button>
-              </Form.Item> */}
 
             <div
               style={{

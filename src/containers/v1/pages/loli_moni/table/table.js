@@ -109,6 +109,7 @@ const TableOutput = () => {
     clearFilters();
     setSearchText("");
   };
+
   const [dataSource, setdatasource] = useState([]);
 
   const dispatch = useDispatch();
@@ -150,7 +151,7 @@ const TableOutput = () => {
     const expanded = (a) => {
       const columns = [
         {
-          title: "Username",
+          title: "Email",
           dataIndex: "username",
           key: "username",
         },

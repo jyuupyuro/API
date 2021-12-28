@@ -104,9 +104,9 @@ const ModalAdd = () => {
                     Create New Account
                   </h1>
                 </div>
-                <Form.Item label="Username">
+                <Form.Item label="Email">
                   <Input
-                    placeholder="Username"
+                    placeholder="Enter an Email"
                     allowClear
                     onChange={(e) => {
                       updateAccount("username", e.target.value);
@@ -115,7 +115,7 @@ const ModalAdd = () => {
                 </Form.Item>
                 <Form.Item label="Password">
                   <Input.Password
-                    placeholder="Password"
+                    placeholder="Enter a Password"
                     iconRender={(visible) =>
                       visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                     }
@@ -128,7 +128,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="API key">
                   <Input
-                    placeholder="API Key"
+                    placeholder="Enter an API Key"
                     allowClear
                     onChange={(e) => {
                       updateAccount("apiKey", e.target.value);
@@ -138,7 +138,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Associate">
                   <Input
-                    placeholder="Associate"
+                    placeholder="Enter an Associate"
                     allowClear
                     onChange={(e) => {
                       updateAccount("associate", e.target.value);
@@ -148,7 +148,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Status">
                   <Select
-                    placeholder="Status"
+                    placeholder="Enter a Status"
                     onChange={(value) => {
                       updateAccount("status", value);
                     }}
@@ -161,7 +161,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Project Code">
                   <Input
-                    placeholder="Project Code"
+                    placeholder="Enter a Project Code"
                     allowClear
                     onChange={(e) => {
                       updateAccount("projectCode", e.target.value);
@@ -171,7 +171,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Usage Percentage">
                   <InputNumber
-                    placeholder="Usage Percentage"
+                    placeholder="Enter a Usage Percentage"
                     min={0}
                     max={1000}
                     defaultValue={0}
@@ -183,7 +183,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Usage">
                   <InputNumber
-                    placeholder="Usage"
+                    placeholder="Enter a Usage"
                     min={0}
                     max={250000}
                     defaultValue={0}
@@ -195,7 +195,7 @@ const ModalAdd = () => {
 
                 <Form.Item label="Service">
                   <Input
-                    placeholder="Service"
+                    placeholder="Enter a Service"
                     allowClear
                     onChange={(e) => {
                       updateAccount("service", e.target.value);
@@ -206,11 +206,10 @@ const ModalAdd = () => {
                 <Form.Item label="Applied At">
                   <DatePicker
                     label="Applied At"
-                    placeholder="Applied At"
+                    placeholder="Enter an Applied At date"
                     showTime
-                    allowClear
-                    format="DD-MM-YYYY HH:mm"
-                    allowClear
+                    allowClear = {false}
+                    format="DD-MM-YYYY HH:mm"                   
                     //   onChange={(date) => { updateAccount("appliedAt", date)
                     // console.log("aplat",date)
                     onChange={(date, dateString) => {
@@ -224,11 +223,10 @@ const ModalAdd = () => {
                 </Form.Item>
                 <Form.Item label="Last Updated At">
                   <DatePicker
-                    placeholder="Last Updated At"
+                    placeholder="Enter a Last Updated At date"
                     showTime
-                    allowClear
+                    allowClear = {false}
                     format="DD-MM-YYYY HH:mm"
-                    allowClear
                     // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                     onChange={(date, dateString) => {
                       updateAccount("lastupdatedAt", date.valueOf());
@@ -239,11 +237,10 @@ const ModalAdd = () => {
                 </Form.Item>
                 <Form.Item label="Next Month Bill Date">
                   <DatePicker
-                    placeholder="Next Month Bill Date"
+                    placeholder="Enter a Next Month Bill Date"
                     showTime
-                    allowClear
                     format="DD-MM-YYYY HH:mm"
-                    allowClear
+                    allowClear = {false}
                     // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                     onChange={(date, dateString) => {
                       updateAccount("nextmonthbill", date.valueOf());
