@@ -226,7 +226,7 @@ const EditAcc = (props) => {
                   console.log("Selected Time: ", date.valueOf());
                   console.log("Formatted Selected Time: ", dateString);
                 }}
-                // value={moment()}
+                
               />
             </Form.Item>
             <Form.Item label="Last Updated At">
