@@ -116,7 +116,6 @@ const TableOutput = () => {
   const accounts = useSelector((state) => state.containers.v1.account);
 
   useEffect(() => {
-    console.log("Component Did mount");
     dispatch(get_accounts());
   }, []);
 
@@ -328,7 +327,6 @@ const TableOutput = () => {
     ];
 
     function onChange(pagination, filters, sorter, extra) {
-      console.log("params", pagination, filters, sorter, extra);
     }
 
     return (

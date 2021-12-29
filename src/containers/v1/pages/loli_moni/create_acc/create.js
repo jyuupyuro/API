@@ -210,12 +210,9 @@ const ModalAdd = () => {
                     showTime
                     allowClear = {false}
                     format="DD-MM-YYYY HH:mm"                   
-                    //   onChange={(date) => { updateAccount("appliedAt", date)
-                    // console.log("aplat",date)
                     onChange={(date, dateString) => {
                       updateAccount("appliedAt", date.valueOf());
-                      console.log("Selected Time: ", date.valueOf());
-                      console.log("Formatted Selected Time: ", dateString);
+
                     }}
 
                     //onChange={(e) => { updateAccount("appliedAt", e.target.value) }}
@@ -230,8 +227,6 @@ const ModalAdd = () => {
                     // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                     onChange={(date, dateString) => {
                       updateAccount("lastupdatedAt", date.valueOf());
-                      console.log("Selected Time: ", date.valueOf());
-                      console.log("Formatted Selected Time: ", dateString);
                     }}
                   />
                 </Form.Item>
@@ -244,8 +239,6 @@ const ModalAdd = () => {
                     // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                     onChange={(date, dateString) => {
                       updateAccount("nextmonthbill", date.valueOf());
-                      console.log("Selected Time: ", date.valueOf());
-                      console.log("Formatted Selected Time: ", dateString);
                     }}
                   />
                 </Form.Item>
@@ -262,7 +255,6 @@ const ModalAdd = () => {
                     style={{ marginRight: 15 }}
                     onClick={() => {
                       dispatch(ACTION.add_account(newAccount));
-                      console.log("appliedAt", newAccount.appliedAt);
                     }}
                   >
                     Save
