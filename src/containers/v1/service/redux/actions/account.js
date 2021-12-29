@@ -56,15 +56,17 @@ export const add_account = (account) => dispatch => {
 
       console.log("Add account result",data)
 
+      
       if (data.status !== 200) {
           if (data.message) {
               message.error("Failed to add account Please enter Valid Informations ", data.message)
           }
       }
       else {
+
           dispatch(get_account_success2(data.account));
           dispatch(goBackToPrev());
-          message.success('Successfully added account');
+          message.success('Successfully added new account');
       }
   })
   .catch(err => {
