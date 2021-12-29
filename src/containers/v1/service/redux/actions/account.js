@@ -42,6 +42,11 @@ export const get_accounts = () => (dispatch) => {
 };
 
 export const add_account = (account) => (dispatch) => {
+  message.loading({
+    content: "Please wait. Account is being created..",
+    duration: 0.1,
+  });
+
   API.addAccount(account)
     .then((data) => {
       if (data.status !== 200) {
@@ -54,7 +59,7 @@ export const add_account = (account) => (dispatch) => {
       } else {
         dispatch(create_account_success(data.account));
         dispatch(goBackToPrev());
-        message.success("Successfully added new account");
+        message.success("Successfully created new account");
       }
     })
     .catch((err) => {
