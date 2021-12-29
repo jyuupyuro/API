@@ -23,7 +23,7 @@ import { moveToPage } from "../../../service/navigation/services/index";
 const { Option } = Select;
 const { Header, Content, Footer } = Layout;
 
-const ModalAdd = () => {
+const CreateAdd = () => {
   const dispatch = useDispatch();
 
   const [newAccount, setNewAccount] = useState({
@@ -281,4 +281,4 @@ const ModalAdd = () => {
   );
 };
 
-export default ModalAdd;
+export default CreateAdd;
