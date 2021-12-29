@@ -9,28 +9,22 @@ export const account = (state = defaultstate, action) => {
     switch (action.type) {
         case "GET_ACCOUNT": {
             
-            console.log("Get accounts")
             
             action.accounts.map(account => {
               newState.byAccountId[account.accountID] = account
             })
           }
-          console.log(newState)
           return newState
-        case "GET_ACCOUNT_2": {
+        case "CREATE_ACCOUNT": {
             
-            console.log("Get accounts 2 ")
             
             newState.byAccountId[action.account.accountID] = action.account
-            console.log("newState",newState)
             return newState
         }
         case "UPDATE_ACCOUNT": {
             
-            console.log("update accounts ")
             
             newState.byAccountId[action.account.accountID] = action.account
-            console.log("newState",newState)
             return newState
           }
 

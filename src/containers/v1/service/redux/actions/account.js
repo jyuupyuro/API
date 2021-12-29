@@ -12,9 +12,9 @@ export const get_account_success = (accounts) => {
     }  
 }
 
-export const get_account_success2 = (account) => {
+export const create_account_success = (account) => {
     return {
-      type : "GET_ACCOUNT_2",
+      type : "CREATE_ACCOUNT",
       account
     }
   }
@@ -31,7 +31,6 @@ export const get_accounts = () => dispatch => {
   API.getAllACC()
   .then((data) => {
 
-      console.log("Get account result",data)
 
       if (data.status !== 200) {
           if (data.message) {
@@ -39,7 +38,6 @@ export const get_accounts = () => dispatch => {
           }
       }
       else {
-          console.log("Inside else")
           dispatch(get_account_success(data.accounts));
       }
   })
@@ -54,7 +52,6 @@ export const add_account = (account) => dispatch => {
   API.addAccount(account)
   .then((data) => {
 
-      console.log("Add account result",data)
 
       
       if (data.status !== 200) {
@@ -63,8 +60,7 @@ export const add_account = (account) => dispatch => {
           }
       }
       else {
-
-          dispatch(get_account_success2(data.account));
+          dispatch(create_account_success(data.account));
           dispatch(goBackToPrev());
           message.success('Successfully added new account');
       }
@@ -80,7 +76,6 @@ export const update_account = (account) => dispatch => {
   API.updateAccount(account)
   .then((data) => {
 
-      console.log("updated acc:",data)
 
       if (data.status !== 200) {    
           if (data.message) {
@@ -89,7 +84,6 @@ export const update_account = (account) => dispatch => {
       }
       else {
           dispatch(update_account_success(data.account));
-          console.log("updated acc:",data.account);
           dispatch(goBackToPrev());
           message.success('Successfully updated account');
           

@@ -30,7 +30,7 @@ const { Header, Content, Footer } = Layout;
 
 const EditAcc = (props) => {
   const accounts = useSelector((state) => state.containers.v1.account);
-  console.log("bruh", accounts.byAccountId)
+
 
   const accountID = props.location.state;
   const acc = accounts.byAccountId[accountID]
@@ -39,9 +39,7 @@ const EditAcc = (props) => {
 
 
   useEffect(() => {
-    console.log("passed in data", props.location.state);
     dispatch(get_accounts());
-    console.log("this is acc", acc)
     setUpdateAccount(acc);
   }, []);
 
@@ -58,13 +56,10 @@ const EditAcc = (props) => {
   useEffect(() => {
     if (JSON.stringify(prevAccounts) !== JSON.stringify(accounts)) {
       const accountID = props.location.state;
-      console.log("[didUpdate] accountID: ", accountID);
 
       // dispatch(get_accounts());
-      console.log("[didUpdate] accounts store: ", accounts);
 
       const account = accounts && accounts.byAccountId[accountID]
-      console.log("[didUpdate] account: ", account);
 
       setUpdateAccount(account);
     }
@@ -253,12 +248,10 @@ const EditAcc = (props) => {
               <DatePicker
                 placeholder="Applied At"
                 showTime
-                allowClear = {false}
+                allowClear={false}
                 format="DD-MM-YYYY HH:mm"
                 onChange={(date, dateString) => {
                   changeAccount("appliedAt", date.valueOf());
-                  console.log("Selected Time: ", date.valueOf());
-                  // console.log("Formatted Selected Time: ", dateString);
                 }}
                 value={moment(updateAccount && updateAccount.appliedAt)}
 
@@ -268,13 +261,11 @@ const EditAcc = (props) => {
               <DatePicker
                 placeholder="Last Updated At"
                 showTime
-                allowClear = {false}
+                allowClear={false}
                 format="DD-MM-YYYY HH:mm"
                 // onChange={(date) => { updateAccount("nextmonthbill", date) }}
                 onChange={(date, dateString) => {
                   changeAccount("lastupdatedAt", date.valueOf());
-                  console.log("Selected Time: ", date.valueOf());
-                  // console.log("Formatted Selected Time: ", dateString);
                 }}
                 value={moment(updateAccount && updateAccount.lastupdatedAt)}
               />
@@ -283,12 +274,10 @@ const EditAcc = (props) => {
               <DatePicker
                 placeholder="Next Month Bill Date"
                 showTime
-                allowClear = {false}
+                allowClear={false}
                 format="DD-MM-YYYY HH:mm"
                 onChange={(date, dateString) => {
                   changeAccount("nextmonthbill", date.valueOf());
-                  console.log("Selected Time: ", date.valueOf());
-                  // console.log("Formatted Selected Time: ", dateString);
                 }}
                 value={moment(updateAccount && updateAccount.nextmonthbill)}
               />
