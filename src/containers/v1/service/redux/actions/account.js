@@ -4,6 +4,7 @@ import * as ActionType from "../action-types";
 import { message } from 'antd'
 import { goBackToPrev } from "../../navigation/services";
 
+
 export const get_account_success = (accounts) => {
     return {
       type : "GET_ACCOUNT",
@@ -60,6 +61,7 @@ export const add_account = (account) => dispatch => {
       else {
           dispatch(create_account_success(data.account));
           dispatch(goBackToPrev());
+          message.success('Successfully added account');
       }
   })
   .catch(err => {
@@ -82,6 +84,7 @@ export const update_account = (account) => dispatch => {
       else {
           dispatch(update_account_success(data.account));
           dispatch(goBackToPrev());
+          message.success('Successfully updated account');
           
       }
   })

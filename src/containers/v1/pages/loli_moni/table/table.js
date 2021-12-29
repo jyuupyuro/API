@@ -299,7 +299,8 @@ const TableOutput = () => {
         dataIndex: "lastupdatedAt",
         key: "lastupdatedAt",
         width: "10%",
-        sorter: (a, b) => a.lastupdatedAt.localeCompare(b.lastupdatedAt)
+        sorter: (a, b) => a.lastupdatedAt.localeCompare(b.lastupdatedAt),
+        defaultSortOrder:"ascend"
       },
       {
         title: "Next Month Bill Date",
