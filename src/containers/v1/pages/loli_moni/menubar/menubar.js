@@ -35,7 +35,7 @@ const MenuBar = () => {
               dispatch(moveToPage("/create"));
             }}
           >
-            Create New Account
+            Create New Accuont
           </Menu.Item>
         </Menu>
       </Header>
@@ -44,7 +44,6 @@ const MenuBar = () => {
           padding:30,
           backgroundColor: "#F5F5F5",
 
-          // backgroundImage:CONSTANT.THEME.LOGINBACKGROUND
         }}
       >
         <Card style={{margin:20, backgroundColor:"#000000"}}>

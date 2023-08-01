@@ -1,53 +1,54 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'antd'
+import React, { useState } from "react";
+import { Modal, Button } from "antd";
 
+import { useDispatch } from "react-redux";
 
-import { useDispatch } from 'react-redux'
+import { goBackToPrev } from "../../service/navigation/services";
 
-import {goBackToPrev} from '../../service/navigation/services'
+const Test1 = (props) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-const Test1 = props => {
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
 
-    const showModal = () => {
-      setIsModalVisible(true);
-    };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const dispatch = useDispatch();
 
-    const handleOk = () => {
-      setIsModalVisible(false);
-    };
+  return (
+    <div>
+      <h1>Hello</h1>
 
-    const handleCancel = () => {
-      setIsModalVisible(false);
-    };
-    const dispatch = useDispatch()
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
 
-    return (
-        <div>
-            <h1>Hello</h1>
-
-            <Button type="primary" onClick={showModal}>
-                    Open Modal
-                </Button>
-                <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                </Modal>
-
-            <Button 
-                style={{width:200}}
-                onClick = {() => {
-                    dispatch(goBackToPrev("/Add"))
-                }}
-            >Go back</Button>
-
-
-
-        </div>
-    )
-
-}
+      <Button
+        style={{ width: 200 }}
+        onClick={() => {
+          dispatch(goBackToPrev("/Add"));
+        }}
+      >
+        Go back
+      </Button>
+    </div>
+  );
+};
 
 export default Test1;
